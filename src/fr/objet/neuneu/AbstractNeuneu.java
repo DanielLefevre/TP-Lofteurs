@@ -20,7 +20,10 @@ public abstract class AbstractNeuneu {
     public abstract void manger();
 
     public void boire() {
-        if(this.caseActuelle.get)
+        if (!this.caseActuelle.getBoissons().isEmpty()) {
+            // this.caseActuelle.getBoissons().get(0).consommer(10);
+            // FIXME
+        }
     }
 
     public void seReproduire() {
@@ -59,4 +62,20 @@ public abstract class AbstractNeuneu {
         this.loft = loftIn;
     }
 
+    public void changerCase(Case newCase) {
+        // Sortir de la case actuelle.
+        this.caseActuelle.removeNeuneu(this);
+        // Aller dans l'autre case.
+        newCase.addNeuneu(this);
+        this.caseActuelle = newCase;
+    }
+
+    public void seDeplacerAleatoirement() {
+        // Determiner une case voisine random.
+        int x = (int) (Math.random() * 3), y = (int) (Math.random() * 3);
+
+        Case newCase = new Case(x, y);
+
+        this.changerCase(newCase);
+    }
 }
