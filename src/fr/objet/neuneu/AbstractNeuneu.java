@@ -72,9 +72,14 @@ public abstract class AbstractNeuneu {
 
     public void seDeplacerAleatoirement() {
         // Determiner une case voisine random.
-        int x = (int) (Math.random() * 3), y = (int) (Math.random() * 3);
+        int x = (int) (Math.random() * 3) - 1, y =
+            (int) (Math.random() * 3) - 1;
 
-        Case newCase = new Case(x, y);
+        if (Loft.isInBounds(x, y)) {
+            Case newCase =
+                this.loft.getCase(this.caseActuelle.getX() + x,
+                    this.caseActuelle.getY() + y);
+        }
 
         this.changerCase(newCase);
     }
