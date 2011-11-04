@@ -20,7 +20,7 @@ public abstract class AbstractNeuneu {
     public abstract void manger();
 
     public void boire() {
-
+        if(this.caseActuelle.get)
     }
 
     public void seReproduire() {
