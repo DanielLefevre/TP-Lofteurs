@@ -1,25 +1,28 @@
 package fr.objet.general;
 
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 
+import fr.objet.affichage.ObjetDessinable;
 import fr.objet.neuneu.AbstractNeuneu;
 import fr.objet.sustentation.AbstractNourriture;
-import fr.objet.sustentation.Boisson;
 
-public class Case {
+public class Case implements ObjetDessinable {
 
-    private ArrayList<AbstractNourriture> nourriture;
-    private ArrayList<Boisson> boissons;
-    private AbstractNeuneu neuneu;
-
-    public void setNeuneu(AbstractNeuneu neuneuIn) {
-        this.neuneu = neuneuIn;
-    }
-
+    private ArrayList<AbstractNourriture> nourriture =
+        new ArrayList<AbstractNourriture>();
+    private ArrayList<AbstractNeuneu> neuneus = new ArrayList<AbstractNeuneu>();
+    private Loft loft;
     private int x;
     private int y;
 
-    public Case(int xIn, int yIn) {
+    public void setNeuneu(ArrayList<AbstractNeuneu> neuneusIn) {
+        this.setNeuneus(neuneusIn);
+    }
+
+    public Case(Loft loftIn, int xIn, int yIn) {
+        this.loft = loftIn;
         this.x = xIn;
         this.y = yIn;
     }
@@ -48,27 +51,52 @@ public class Case {
         this.nourriture = nourritureIn;
     }
 
-    public ArrayList<Boisson> getBoissons() {
-        return this.boissons;
-    }
-
-    @SuppressWarnings("unused")
     public void removeNeuneu(AbstractNeuneu abstractNeuneu) {
-        // TODO Auto-generated method stub
-
+        this.neuneus.remove(abstractNeuneu);
     }
 
-    @SuppressWarnings("unused")
     public void addNeuneu(AbstractNeuneu abstractNeuneu) {
-        // TODO Auto-generated method stub
-
-    }
-
-    public AbstractNeuneu getNeuneu() {
-        return this.neuneu;
+        this.neuneus.add(abstractNeuneu);
+        // TODO : gérer les 1 neuneu par Case.
     }
 
     public boolean hasNeuneu() {
-        return this.neuneu != null;
+        return !this.neuneus.isEmpty();
+    }
+
+    public ArrayList<AbstractNeuneu> getNeuneus() {
+        return this.neuneus;
+    }
+
+    public void setNeuneus(ArrayList<AbstractNeuneu> neuneusIn) {
+        this.neuneus = neuneusIn;
+    }
+
+    public boolean hasNourriture() {
+        return !this.nourriture.isEmpty();
+    }
+
+    public void addNourriture(AbstractNourriture nourritureIn) {
+        this.nourriture.add(nourritureIn);
+    }
+
+    @Override
+    public void dessinerObjet(Graphics g) {
+        for (AbstractNourriture nourritureOut : this.nourriture) {
+            Color c = g.getColor();
+            g.setColor(nourritureOut.returnColor());
+            g.fillOval(this.x * 5, this.y * 5, 20, 20);
+            g.setColor(c);
+        }
+    }
+
+    public ArrayList<Case> getVoisins() {
+        ArrayList<Case> voisins = new ArrayList<Case>();
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                voisins.add(this.loft.getCase(this.x + i, this.y + j));
+            }
+        }
+        return voisins;
     }
 }

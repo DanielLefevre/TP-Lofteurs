@@ -1,11 +1,16 @@
 package fr.objet.sustentation;
 
-public class Fruits extends AbstractNourriture{
+import java.awt.Color;
+
+public class Fruits extends AbstractNourriture {
 
     public Fruits(int valeurEnergetiqueIn) {
         super(valeurEnergetiqueIn);
+        // TODO Auto-generated constructor stub
     }
 
-
+    @Override
+    public Color returnColor() {
+        return Color.CYAN;
+    }
 }
-

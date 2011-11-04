@@ -1,6 +1,8 @@
 package fr.objet.sustentation;
 
-public abstract class AbstractNourriture {
+import java.awt.Color;
+
+public abstract class AbstractNourriture implements Mangeable {
 
     protected int valeurEnergetique;
 
@@ -16,8 +18,15 @@ public abstract class AbstractNourriture {
         this.valeurEnergetique = valeurEnergetiqueIn;
     }
 
-    public void consommer(int consommation) {
-        this.valeurEnergetique -= consommation;
-
+    @Override
+    public void consommerEnergie(int energie) {
+        this.valeurEnergetique -= energie;
     }
+
+    @Override
+    public int getEnergie() {
+        return this.valeurEnergetique;
+    }
+
+    public abstract Color returnColor();
 }
