@@ -1,24 +1,32 @@
 package fr.objet.general;
 
-import java.util.ArrayList;
-
 public class Loft {
 
     private Case[][] listeCases;
     private int hauteur;
     private int largeur;
 
-    public Loft(int hauteurIn, int LargeurIn) {
-
+    public Case[][] getListeCases() {
+        return this.listeCases;
     }
 
-    public Case getCase(int x, int y) {
-        return null;
-        // FIXME
+    public void setListeCases(Case[][] listeCasesIn) {
+        this.listeCases = listeCasesIn;
     }
 
-    public static boolean isInBounds(int x, int y) {
-        // TODO Auto-generated method stub
-        return false;
+    public int getLargeur() {
+        return this.largeur;
+    }
+
+    public void setLargeur(int largeurIn) {
+        this.largeur = largeurIn;
+    }
+
+    public int getHauteur() {
+        return this.hauteur;
+    }
+
+    public void setHauteur(int hauteurIn) {
+        this.hauteur = hauteurIn;
     }
 }

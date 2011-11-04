@@ -9,7 +9,6 @@ import javax.swing.JPanel;
  * un panneau de dessin pour le loft
  * 
  * @author moreau
- * 
  */
 class LoftPanel extends JPanel {
 
@@ -27,7 +26,7 @@ class LoftPanel extends JPanel {
      *            référence sur la liste des objets (gérée par la ZoneGraphique)
      */
     public LoftPanel(LinkedList<ObjetDessinable> listeObjetsIn) {
-	this.listeObjets = listeObjetsIn;
+        this.listeObjets = listeObjetsIn;
     }
 
     /**
@@ -36,11 +35,11 @@ class LoftPanel extends JPanel {
      */
     @Override
     public void paintComponent(Graphics g) {
-	super.paintComponents(g);
+        super.paintComponents(g);
 
-	// on redessine tout
-	for (ObjetDessinable x : this.listeObjets) {
-	    x.dessinerObjet(g);
-	}
+        // on redessine tout
+        for (ObjetDessinable x : this.listeObjets) {
+            x.dessinerObjet(g);
+        }
     }
 }

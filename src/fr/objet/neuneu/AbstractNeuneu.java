@@ -2,8 +2,9 @@ package fr.objet.neuneu;
 
 import fr.objet.general.Case;
 import fr.objet.general.Loft;
+import fr.objet.sustentation.Mangeable;
 
-public abstract class AbstractNeuneu {
+public abstract class AbstractNeuneu implements Mangeable {
 
     private int energie;
     private int besoinEnergetique;
@@ -17,7 +18,7 @@ public abstract class AbstractNeuneu {
 
     public abstract void seDeplacer();
 
-    public abstract void manger();
+    public abstract void manger(Mangeable bouffe);
 
     public void boire() {
         if (!this.caseActuelle.getBoissons().isEmpty()) {
@@ -70,17 +71,23 @@ public abstract class AbstractNeuneu {
         this.caseActuelle = newCase;
     }
 
-    public void seDeplacerAleatoirement() {
+    public Case determinerCaseAleatoire() {
         // Determiner une case voisine random.
-        int x = (int) (Math.random() * 3) - 1, y =
-            (int) (Math.random() * 3) - 1;
+        int x, y;
+        do {
+            x = (int) (Math.random() * 3) - 1;
+            y = (int) (Math.random() * 3) - 1;
+        } while (Loft.isInBounds(x, y));
 
-        if (Loft.isInBounds(x, y)) {
-            Case newCase =
-                this.loft.getCase(this.caseActuelle.getX() + x,
-                    this.caseActuelle.getY() + y);
-        }
+        return this.loft.getCase(x, y);
+    }
 
-        this.changerCase(newCase);
+    public void addEnergie(int energieIn) {
+        this.energie += energieIn;
+    }
+
+    @Override
+    public void diminuerEnergie(int energieIn) {
+        this.energie -= energieIn;
     }
 }

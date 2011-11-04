@@ -35,8 +35,8 @@ public class Saison1 {
         // x -= proportionErratique;
         // if (x < proportionCannibale) {
         // loft.add(new Cannibale(loft,
-        // (int) (Math.random() * 29), (int) (Math
-        // .random() * 29), 5));
+        // (int) (Math.random() * 29),
+        // (int) (Math.random() * 29), 5));
         // }
         // }
         // }
