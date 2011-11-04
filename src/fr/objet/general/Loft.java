@@ -1,4 +1,4 @@
-package general;
+package fr.objet.general;
 
 import java.util.ArrayList;
 
