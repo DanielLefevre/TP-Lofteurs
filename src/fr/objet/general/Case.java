@@ -3,8 +3,6 @@ package fr.objet.general;
 import java.util.ArrayList;
 
 import fr.objet.neuneu.AbstractNeuneu;
-import fr.objet.nourriture.AbstractNourriture;
-import fr.objet.nourriture.Boisson;
 
 public class Case {
 
