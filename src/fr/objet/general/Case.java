@@ -2,8 +2,8 @@ package fr.objet.general;
 
 import java.util.ArrayList;
 
-import fr.objet.nourriture.AbstractNourriture;
-import fr.objet.nourriture.Boisson;
+import fr.objet.sustentation.AbstractNourriture;
+import fr.objet.sustentation.Boisson;
 
 public class Case {
 
