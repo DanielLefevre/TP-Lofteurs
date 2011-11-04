@@ -18,6 +18,8 @@ import javax.swing.JFrame;
  */
 public class ZoneGraphique extends JFrame {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * la liste d'objets à dessiner
      */
@@ -34,44 +36,47 @@ public class ZoneGraphique extends JFrame {
 	super(titre);
 
 	// ajout d'une taille par défaut
-	setSize(600, 600);
+	this.setSize(600, 600);
 
 	// création de la liste d'objets
-	liste = new LinkedList<ObjetDessinable>();
+	this.liste = new LinkedList<ObjetDessinable>();
 
 	// ajout d'un listener
-	addWindowListener(new WindowAdapter() {
+	this.addWindowListener(new WindowAdapter() {
+	    @Override
 	    public void windowClosing(WindowEvent e) {
 		System.exit(0);
 	    }
 	});
 
 	// création du panneau
-	LoftPanel a = new LoftPanel(liste);
-	getContentPane().add(a);
+	LoftPanel a = new LoftPanel(this.liste);
+	this.getContentPane().add(a);
 
-	setVisible(true);
+	this.setVisible(true);
     }
 
     /**
      * ajout d'un objet dans la zone graphique
      */
     void ajouterObjet(ObjetDessinable o) {
-	liste.add(o);
+	this.liste.add(o);
     }
 
     /**
      * largeur de la partie dessinable
      */
+    @Override
     public int getWidth() {
-	return getContentPane().getWidth();
+	return this.getContentPane().getWidth();
     }
 
     /**
      * hauteur de la partie dessinable
      */
+    @Override
     public int getHeight() {
-	return getContentPane().getHeight();
+	return this.getContentPane().getHeight();
     }
 
 }

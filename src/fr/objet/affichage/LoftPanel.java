@@ -23,22 +23,23 @@ class LoftPanel extends JPanel {
     /**
      * constructeur
      * 
-     * @param listeObjets
+     * @param listeObjetsIn
      *            référence sur la liste des objets (gérée par la ZoneGraphique)
      */
-    public LoftPanel(LinkedList<ObjetDessinable> listeObjets) {
-	this.listeObjets = listeObjets;
+    public LoftPanel(LinkedList<ObjetDessinable> listeObjetsIn) {
+	this.listeObjets = listeObjetsIn;
     }
 
     /**
      * on redéfinit la méthode paint() : elle se contente d'appeler les méthodes
      * dessinerObjet() de la liste d'objets dessinables
      */
+    @Override
     public void paintComponent(Graphics g) {
 	super.paintComponents(g);
 
 	// on redessine tout
-	for (ObjetDessinable x : listeObjets) {
+	for (ObjetDessinable x : this.listeObjets) {
 	    x.dessinerObjet(g);
 	}
     }
