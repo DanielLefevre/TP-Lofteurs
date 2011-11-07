@@ -1,7 +1,7 @@
 package fr.objet.affichage;
 
 import java.awt.Graphics;
-import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.JPanel;
 
@@ -16,15 +16,15 @@ class LoftPanel extends JPanel {
     /**
      * référence sur la liste des objets à dessiner
      */
-    private LinkedList<ObjetDessinable> listeObjets;
+    private List<ObjetDessinable> listeObjets;
 
     /**
      * constructeur
-     * @param listeObjetsIn
+     * @param liste
      *            référence sur la liste des objets (gérée par la ZoneGraphique)
      */
-    public LoftPanel(LinkedList<ObjetDessinable> listeObjetsIn) {
-        this.listeObjets = listeObjetsIn;
+    public LoftPanel(List<ObjetDessinable> liste) {
+        this.listeObjets = liste;
     }
 
     /**

@@ -33,9 +33,11 @@ public class Vorace extends AbstractNeuneu {
         if (this.energie > 50 && newCase.hasNeuneu()) {
             this.changerCase(newCase);
             this.seReproduire(newCase.getNeuneus().get(0));
-        } else if (!newCase.hasNeuneu() && newCase.hasNourriture()) {
+        } else if (!newCase.hasNeuneu()) {
             this.changerCase(newCase);
-            this.manger(newCase);
+            if (newCase.hasNourriture()) {
+                this.manger(newCase);
+            }
         }
     }
 }

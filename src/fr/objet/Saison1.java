@@ -8,11 +8,11 @@ import fr.objet.neuneu.Vorace;
 
 public class Saison1 {
 
-    public static int nombreLofteurs = 50;
+    public static int nombreLofteurs = 100;
     public static int tailleLoft = 30;
-    public static float proportionErratique = .75f;
-    public static float proportionVorace = .25f;
-    public static float proportionCannibale = 0f;
+    public static float proportionErratique = .40f;
+    public static float proportionVorace = .30f;
+    public static float proportionCannibale = .30f;
 
     public static void main(String[] args) {
         ZoneGraphique zone = new ZoneGraphique("Mon premier loft");

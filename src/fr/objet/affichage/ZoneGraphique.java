@@ -3,6 +3,7 @@ package fr.objet.affichage;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.LinkedList;
+import java.util.List;
 
 import javax.swing.JFrame;
 
@@ -21,7 +22,7 @@ public class ZoneGraphique extends JFrame {
     /**
      * la liste d'objets à dessiner
      */
-    LinkedList<ObjetDessinable> liste;
+    List<ObjetDessinable> liste;
 
     /**
      * constructeur
@@ -36,7 +37,7 @@ public class ZoneGraphique extends JFrame {
         this.setSize(600, 600);
 
         // création de la liste d'objets
-        this.liste = new LinkedList<ObjetDessinable>();
+        this.liste = new LinkedList<>();
 
         // ajout d'un listener
         this.addWindowListener(new WindowAdapter() {

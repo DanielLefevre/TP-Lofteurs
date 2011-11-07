@@ -2,6 +2,7 @@ package fr.objet.general;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.objet.affichage.ObjetDessinable;
 import fr.objet.affichage.ZoneGraphique;
@@ -13,7 +14,7 @@ public class Loft implements ObjetDessinable {
     private Case[][] listeCases;
     private int hauteur;
     private int largeur;
-    private ArrayList<AbstractNeuneu> neuneus = new ArrayList<AbstractNeuneu>();
+    private List<AbstractNeuneu> neuneus = new ArrayList<>();
     private ZoneGraphique zone;
 
     public boolean isInBounds(int x, int y) {
@@ -75,7 +76,7 @@ public class Loft implements ObjetDessinable {
         }
     }
 
-    public ArrayList<AbstractNeuneu> getNeuneus() {
+    public List<AbstractNeuneu> getNeuneus() {
         return this.neuneus;
     }
 

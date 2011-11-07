@@ -38,6 +38,11 @@ public class Cannibale extends AbstractNeuneu {
         } else if (newCase.hasNeuneu() && Math.random() < 0.5) {
             this.changerCase(newCase);
             this.manger(newCase.getNeuneus().get(0));
+        } else if (!newCase.hasNeuneu()) {
+            this.changerCase(newCase);
+            if (newCase.hasNourriture()) {
+                this.manger(newCase);
+            }
         }
     }
 }

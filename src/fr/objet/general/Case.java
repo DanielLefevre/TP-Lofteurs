@@ -3,14 +3,15 @@ package fr.objet.general;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.List;
 
 import fr.objet.neuneu.AbstractNeuneu;
 import fr.objet.sustentation.AbstractNourriture;
 
 public class Case {
 
-    private ArrayList<AbstractNourriture> nourriture = new ArrayList<AbstractNourriture>();
-    private ArrayList<AbstractNeuneu> neuneus = new ArrayList<AbstractNeuneu>();
+    private List<AbstractNourriture> nourriture = new ArrayList<>();
+    private List<AbstractNeuneu> neuneus = new ArrayList<>();
     private Loft loft;
     private int x;
     private int y;
@@ -41,7 +42,7 @@ public class Case {
         this.y = yIn;
     }
 
-    public ArrayList<AbstractNourriture> getNourriture() {
+    public List<AbstractNourriture> getNourriture() {
         return this.nourriture;
     }
 
@@ -62,7 +63,7 @@ public class Case {
         return !this.neuneus.isEmpty();
     }
 
-    public ArrayList<AbstractNeuneu> getNeuneus() {
+    public List<AbstractNeuneu> getNeuneus() {
         return this.neuneus;
     }
 
@@ -88,7 +89,7 @@ public class Case {
     }
 
     public ArrayList<Case> getVoisins() {
-        ArrayList<Case> voisins = new ArrayList<Case>();
+        ArrayList<Case> voisins = new ArrayList<>();
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
                 if (this.loft.isInBounds(this.x + i, this.y + j)) {
