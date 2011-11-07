@@ -57,10 +57,10 @@ public abstract class AbstractNeuneu implements Mangeable, ObjetDessinable {
             y = (int) (Math.random() * 3) - 1;
             // Tant que les chiffres trouvés ne sont pas dans les bounds.
         } while (!this.loft.isInBounds(this.caseActuelle.getX() + x,
-            this.caseActuelle.getY() + y));
+                this.caseActuelle.getY() + y));
 
         return this.loft.getCase(this.caseActuelle.getX() + x,
-            this.caseActuelle.getY() + y);
+                this.caseActuelle.getY() + y);
     }
 
     public Case determinerCaseVoisineNourriture() {

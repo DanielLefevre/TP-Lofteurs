@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 
 /**
  * un panneau de dessin pour le loft
- * 
  * @author moreau
  */
 class LoftPanel extends JPanel {
@@ -21,7 +20,6 @@ class LoftPanel extends JPanel {
 
     /**
      * constructeur
-     * 
      * @param listeObjetsIn
      *            référence sur la liste des objets (gérée par la ZoneGraphique)
      */

@@ -6,16 +6,11 @@ import java.util.LinkedList;
 
 import javax.swing.JFrame;
 
-import fr.objet.general.Case;
-import fr.objet.general.Loft;
-import fr.objet.neuneu.AbstractNeuneu;
-
 /**
  * une classe comportant une zone graphique dans laquelle on peut dessiner ; le
  * dessin est refait automatiquement par la classe Panel associée ; tous les
  * objets de type ObjetDessinable ajoutés à la liste sont redessinés par un
  * appel à leur méthode dessinerObjet(Graphics g)
- * 
  * @see ObjectDessinable,LoftPanel
  * @author moreau
  */
@@ -30,7 +25,6 @@ public class ZoneGraphique extends JFrame {
 
     /**
      * constructeur
-     * 
      * @param titre
      *            le nom de l'application
      */
@@ -81,17 +75,5 @@ public class ZoneGraphique extends JFrame {
     @Override
     public int getHeight() {
         return this.getContentPane().getHeight();
-    }
-
-    public void majObjets(Loft loft) {
-        this.liste.clear();
-        for (AbstractNeuneu neuneu : loft.getNeuneus()) {
-            this.ajouterObjet(neuneu);
-        }
-        for (Case[] caseC : loft.getListeCases()) {
-            for (Case caseCC : caseC) {
-                this.ajouterObjet(caseCC);
-            }
-        }
     }
 }

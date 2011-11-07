@@ -8,7 +8,7 @@ import fr.objet.neuneu.Vorace;
 
 public class Saison1 {
 
-    public static int nombreLofteurs = 4;
+    public static int nombreLofteurs = 50;
     public static int tailleLoft = 30;
     public static float proportionErratique = .75f;
     public static float proportionVorace = .25f;
@@ -24,24 +24,22 @@ public class Saison1 {
             double x = Math.random();
             if (x < proportionVorace) {
                 loft.add(new Vorace(loft, (int) (Math.random() * 29),
-                    (int) (Math.random() * 29)));
+                        (int) (Math.random() * 29)));
             } else {
                 x -= proportionVorace;
                 if (x < proportionErratique) {
                     loft.add(new Erratique(loft, (int) (Math.random() * 29),
-                        (int) (Math.random() * 29)));
+                            (int) (Math.random() * 29)));
                 } else {
                     x -= proportionErratique;
                     if (x < proportionCannibale) {
                         loft.add(new Cannibale(loft,
-                            (int) (Math.random() * 29),
-                            (int) (Math.random() * 29)));
+                                (int) (Math.random() * 29), (int) (Math
+                                        .random() * 29)));
                     }
                 }
             }
         }
-
-        zone.majObjets(loft);
 
         loft.go();
     }

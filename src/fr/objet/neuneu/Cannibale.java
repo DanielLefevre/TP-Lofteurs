@@ -17,8 +17,8 @@ public class Cannibale extends AbstractNeuneu {
     public void dessinerObjet(Graphics g) {
         Color c = g.getColor();
         g.setColor(Color.RED);
-        g.fillOval(this.caseActuelle.getX() * 5, this.caseActuelle.getY() * 5,
-            10, 10);
+        g.fillOval(this.caseActuelle.getX() * 20,
+                this.caseActuelle.getY() * 20, 10, 10);
         g.setColor(c);
     }
 

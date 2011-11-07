@@ -4,14 +4,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import fr.objet.affichage.ObjetDessinable;
 import fr.objet.neuneu.AbstractNeuneu;
 import fr.objet.sustentation.AbstractNourriture;
 
-public class Case implements ObjetDessinable {
+public class Case {
 
-    private ArrayList<AbstractNourriture> nourriture =
-        new ArrayList<AbstractNourriture>();
+    private ArrayList<AbstractNourriture> nourriture = new ArrayList<AbstractNourriture>();
     private ArrayList<AbstractNeuneu> neuneus = new ArrayList<AbstractNeuneu>();
     private Loft loft;
     private int x;
@@ -80,7 +78,6 @@ public class Case implements ObjetDessinable {
         this.nourriture.add(nourritureIn);
     }
 
-    @Override
     public void dessinerObjet(Graphics g) {
         for (AbstractNourriture nourritureOut : this.nourriture) {
             Color c = g.getColor();
@@ -94,7 +91,9 @@ public class Case implements ObjetDessinable {
         ArrayList<Case> voisins = new ArrayList<Case>();
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
-                voisins.add(this.loft.getCase(this.x + i, this.y + j));
+                if (this.loft.isInBounds(this.x + i, this.y + j)) {
+                    voisins.add(this.loft.getCase(this.x + i, this.y + j));
+                }
             }
         }
         return voisins;

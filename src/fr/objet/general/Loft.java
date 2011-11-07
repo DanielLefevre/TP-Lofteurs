@@ -55,7 +55,7 @@ public class Loft implements ObjetDessinable {
     public void remplissageAleatoire(float pourcentage) {
         for (int i = 0; i < (int) pourcentage * this.hauteur * this.largeur; i++) {
             this.listeCases[(int) (Math.random() * this.largeur)][(int) (Math
-                .random() * this.hauteur)].addNourriture(new Fruits(100));
+                    .random() * this.hauteur)].addNourriture(new Fruits(100));
         }
     }
 
@@ -80,22 +80,17 @@ public class Loft implements ObjetDessinable {
     }
 
     public void go() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 20; i++) {
             for (AbstractNeuneu neuneu : this.neuneus) {
                 neuneu.cycleDeVie();
             }
-            this.zone.majObjets(this);
             try {
-                Thread.sleep(2000);
+                Thread.sleep(250);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
-            // for (AbstractNeuneu neuneu : this.neuneus) {
-            // System.out.println(neuneu.getClass());
-            // System.out.println(neuneu.getCaseActuelle().getX() + " "
-            // + neuneu.getCaseActuelle().getY());
-            // }
+            this.zone.repaint();
         }
     }
 
