@@ -29,17 +29,20 @@ public class Lapin extends AbstractNeuneu {
     @Override
     public void cycleDeVie() {
 	if (this.energie > 0) {
-	    System.out.println("Lapin moves");
-	    Case newCase = this.determinerCaseVoisineNeuneu();
+	    Case newCase = this.determinerNeuneuLePlusProche();
+	    if (newCase == null) {
+		newCase = this.determinerCaseVoisineNeuneu();
+	    }
 	    if (newCase == null) {
 		newCase = this.determinerCaseVoisineAleatoire();
 	    }
-	    if (this.energie > 50 && newCase.hasNeuneu()) {
+	    if (this.energie > 50 && newCase.hasNeuneu() && Math.random() < 0.5) {
+		this.seReproduire(newCase.getNeuneu());
+	    } else if (!newCase.hasNeuneu()) {
 		this.changerCase(newCase);
-		this.seReproduire(newCase.getNeuneus().get(0));
-	    } else if (!newCase.hasNeuneu() && newCase.hasNourriture()) {
-		this.changerCase(newCase);
-		this.manger(newCase);
+		if (newCase.hasNourriture()) {
+		    this.manger(newCase);
+		}
 	    }
 	    this.energie--;
 	}

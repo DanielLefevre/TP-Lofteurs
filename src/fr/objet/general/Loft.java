@@ -22,12 +22,7 @@ public class Loft implements ObjetDessinable {
     }
 
     public Case getCase(int x, int y) {
-	try {
-	    return this.listeCases[x][y];
-	} catch (ArrayIndexOutOfBoundsException e) {
-//	    System.exit(1);
-	    return null;
-	}
+	return this.listeCases[x][y];
     }
 
     public Loft(int tailleIn, ZoneGraphique zoneIn) {
@@ -61,7 +56,7 @@ public class Loft implements ObjetDessinable {
     public void remplissageAleatoire(float pourcentage) {
 	for (int i = 0; i < (int) (this.hauteur * this.largeur * pourcentage); i++) {
 	    this.listeCases[(int) (Math.random() * this.largeur)][(int) (Math
-		    .random() * this.hauteur)].setNourriture(new Fruits(10));
+		    .random() * this.hauteur)].setNourriture(new Fruits(20));
 	}
     }
 

@@ -107,4 +107,8 @@ public class Case {
     public double distance(Case c) {
 	return Math.sqrt(Math.pow(this.x - c.x, 2) + Math.pow(this.y - c.y, 2));
     }
+
+    public AbstractNeuneu getNeuneu() {
+	return this.neuneus.get(0);
+    }
 }

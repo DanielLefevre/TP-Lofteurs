@@ -29,20 +29,26 @@ public class Cannibale extends AbstractNeuneu {
     @Override
     public void cycleDeVie() {
 	if (this.energie > 0) {
-	    Case newCase = this.determinerCaseVersNourriture();
+	    Case newCase = this.determinerNeuneuLePlusProche();
+	    if (newCase == null) {
+		newCase = this.determinerCaseVersNourriture();
+	    }
 	    if (newCase == null) {
 		newCase = this.determinerCaseVoisineAleatoire();
 	    }
-	    if (this.energie > 10 && newCase.hasNeuneu()) {
+	    if (newCase.hasNeuneu() && !newCase.getNeuneu().isDead()) {
 		this.changerCase(newCase);
-		this.seReproduire(newCase.getNeuneus().get(0));
+		this.manger(newCase.getNeuneu());
 	    } else if (!newCase.hasNeuneu() && newCase.hasNourriture()) {
+		// Recherche de nourriture
 		this.changerCase(newCase);
 		this.manger(newCase);
-	    } else if (newCase.hasNeuneu()) {
-		this.changerCase(newCase);
-		this.manger(newCase.getNeuneus().get(0));
+	    } else if (this.energie > 10 && newCase.hasNeuneu()
+		    && Math.random() < 0.05) {
+		// Reproduction
+		this.seReproduire(newCase.getNeuneu());
 	    } else if (!newCase.hasNeuneu()) {
+		// Changement aléatoire de case
 		this.changerCase(newCase);
 		if (newCase.hasNourriture()) {
 		    this.manger(newCase);

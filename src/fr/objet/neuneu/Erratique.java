@@ -33,9 +33,9 @@ public class Erratique extends AbstractNeuneu {
     public void cycleDeVie() {
 	if (this.energie > 0) {
 	    Case newCase = this.determinerCaseVoisineAleatoire();
-	    if (this.energie > 10 && newCase.hasNeuneu()) {
-		this.changerCase(newCase);
-		this.seReproduire(newCase.getNeuneus().get(0));
+	    if (this.energie > 10 && newCase.hasNeuneu()
+		    && Math.random() < 0.05) {
+		this.seReproduire(newCase.getNeuneu());
 	    } else if (!newCase.hasNeuneu()) {
 		this.changerCase(newCase);
 		if (newCase.hasNourriture()) {

@@ -32,8 +32,8 @@ public class Vorace extends AbstractNeuneu {
 	    if (newCase == null) {
 		newCase = this.determinerCaseVoisineAleatoire();
 	    }
-	    if (this.energie > 10 && newCase.hasNeuneu()) {
-		this.changerCase(newCase);
+	    if (this.energie > 10 && newCase.hasNeuneu()
+		    && Math.random() < 0.05) {
 		this.seReproduire(newCase.getNeuneus().get(0));
 	    } else if (!newCase.hasNeuneu()) {
 		this.changerCase(newCase);

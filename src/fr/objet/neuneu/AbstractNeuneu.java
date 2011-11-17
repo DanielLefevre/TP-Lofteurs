@@ -11,7 +11,7 @@ public abstract class AbstractNeuneu implements Mangeable, ObjetDessinable {
     protected Case caseActuelle;
     protected Loft loft;
 
-    protected static final int ENERGIE_DEPART = 20;
+    protected static final int ENERGIE_DEPART = 10;
 
     public AbstractNeuneu(Loft loftIn, Case caseActuelleIn) {
 	this.caseActuelle = caseActuelleIn;
@@ -23,6 +23,10 @@ public abstract class AbstractNeuneu implements Mangeable, ObjetDessinable {
 	this.loft = loftIn;
 	this.caseActuelle = loftIn.getCase(x, y);
 	this.energie = AbstractNeuneu.ENERGIE_DEPART;
+    }
+
+    public boolean isDead() {
+	return this.energie > 0;
     }
 
     public void manger(Mangeable bouffe) {
@@ -50,12 +54,15 @@ public abstract class AbstractNeuneu implements Mangeable, ObjetDessinable {
     public abstract void cycleDeVie();
 
     public void changerCase(Case newCase) {
-	// Sortir de la case actuelle.
-	this.caseActuelle.removeNeuneu(this);
-	// Aller dans l'autre case.
-	newCase.addNeuneu(this);
-	// Changer la référence vers la nouvelle case.
-	this.caseActuelle = newCase;
+	if (!newCase.hasNeuneu()) {
+	    // Sortir de la case actuelle.
+	    this.caseActuelle.removeNeuneu(this);
+	    // Aller dans l'autre case.
+	    newCase.addNeuneu(this);
+	    // Changer la référence vers la nouvelle case.
+	    this.caseActuelle = newCase;
+	}
+	// S'il n'y a pas de place à côté, on ne bouge pas.
     }
 
     public Case determinerCaseVoisineAleatoire() {
@@ -91,6 +98,36 @@ public abstract class AbstractNeuneu implements Mangeable, ObjetDessinable {
 	}
 
 	// idéale est la case la plus proche avec de la nourriture. Il faut
+	// maintenant trouver comment y aller.
+	Case idéale = null;
+	for (Case c : this.caseActuelle.getVoisins()) {
+	    if (c.distance(but) < distanceMin) {
+		distanceMin = c.distance(but);
+		idéale = c;
+	    }
+	}
+	return idéale;
+    }
+
+    public Case determinerNeuneuLePlusProche() {
+	double distanceMin = this.loft.getHauteur() * this.loft.getLargeur();
+	Case but = null;
+	for (Case[] ligne : this.loft.getListeCases()) {
+	    for (Case c : ligne) {
+		if (c.hasNeuneu() && c != this.caseActuelle
+			&& c.distance(this.caseActuelle) < distanceMin) {
+		    distanceMin = c.distance(this.caseActuelle);
+		    but = c;
+		}
+	    }
+	}
+
+	if (but == null) {
+	    // S'il n'y a plus de neuneus nul part.
+	    return null;
+	}
+
+	// idéale est la case la plus proche avec un neuneu. Il faut
 	// maintenant trouver comment y aller.
 	Case idéale = null;
 	for (Case c : this.caseActuelle.getVoisins()) {
