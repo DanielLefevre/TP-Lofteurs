@@ -9,35 +9,39 @@ import fr.objet.general.Loft;
 public class Vorace extends AbstractNeuneu {
 
     public Vorace(Loft loftIn, int x, int y) {
-        super(loftIn, x, y);
-        // TODO Auto-generated constructor stub
+	super(loftIn, x, y);
     }
 
     @Override
     public void dessinerObjet(Graphics g) {
-        Color c = g.getColor();
-        g.setColor(Color.BLACK);
-        g.fillOval(this.caseActuelle.getX() * 20,
-                this.caseActuelle.getY() * 20, 10, 10);
-        g.setColor(c);
+	Color c = g.getColor();
+	if (this.energie == 0) {
+	    g.setColor(Color.BLACK);
+	} else {
+	    g.setColor(Color.CYAN);
+	}
+	g.fillOval(this.caseActuelle.getX() * 20,
+		this.caseActuelle.getY() * 20, 10, 10);
+	g.setColor(c);
     }
 
     @Override
     public void cycleDeVie() {
-        System.out.println("Vorace moves");
-        Case newCase = this.determinerCaseVoisineNourriture();
-        if (newCase == null) {
-            newCase = this.determinerCaseVoisineAleatoire();
-        }
-
-        if (this.energie > 50 && newCase.hasNeuneu()) {
-            this.changerCase(newCase);
-            this.seReproduire(newCase.getNeuneus().get(0));
-        } else if (!newCase.hasNeuneu()) {
-            this.changerCase(newCase);
-            if (newCase.hasNourriture()) {
-                this.manger(newCase);
-            }
-        }
+	if (this.energie > 0) {
+	    Case newCase = this.determinerCaseVersNourriture();
+	    if (newCase == null) {
+		newCase = this.determinerCaseVoisineAleatoire();
+	    }
+	    if (this.energie > 10 && newCase.hasNeuneu()) {
+		this.changerCase(newCase);
+		this.seReproduire(newCase.getNeuneus().get(0));
+	    } else if (!newCase.hasNeuneu()) {
+		this.changerCase(newCase);
+		if (newCase.hasNourriture()) {
+		    this.manger(newCase);
+		}
+	    }
+	    this.energie--;
+	}
     }
 }

@@ -18,84 +18,85 @@ public class Loft implements ObjetDessinable {
     private ZoneGraphique zone;
 
     public boolean isInBounds(int x, int y) {
-        return x > 0 && x < this.largeur && y > 0 && y < this.hauteur;
+	return x >= 0 && x < this.largeur && y >= 0 && y < this.hauteur;
     }
 
     public Case getCase(int x, int y) {
-        return this.listeCases[x][y];
+	try {
+	    return this.listeCases[x][y];
+	} catch (ArrayIndexOutOfBoundsException e) {
+//	    System.exit(1);
+	    return null;
+	}
     }
 
     public Loft(int tailleIn, ZoneGraphique zoneIn) {
-        this.hauteur = tailleIn;
-        this.largeur = tailleIn;
-        this.listeCases = new Case[tailleIn][tailleIn];
-        for (int i = 0; i < tailleIn; i++) {
-            for (int j = 0; j < tailleIn; j++) {
-                this.listeCases[i][j] = new Case(this, i, j);
-            }
-        }
-        this.zone = zoneIn;
+	this.hauteur = tailleIn;
+	this.largeur = tailleIn;
+	this.listeCases = new Case[tailleIn][tailleIn];
+	for (int i = 0; i < tailleIn; i++) {
+	    for (int j = 0; j < tailleIn; j++) {
+		this.listeCases[i][j] = new Case(this, i, j);
+	    }
+	}
+	this.zone = zoneIn;
     }
 
     public int getHauteur() {
-        return this.hauteur;
+	return this.hauteur;
     }
 
     public int getLargeur() {
-        return this.largeur;
+	return this.largeur;
     }
 
     public void setHauteur(int hauteurIn) {
-        this.hauteur = hauteurIn;
+	this.hauteur = hauteurIn;
     }
 
     public void setLargeur(int largeurIn) {
-        this.largeur = largeurIn;
+	this.largeur = largeurIn;
     }
 
     public void remplissageAleatoire(float pourcentage) {
-        for (int i = 0; i < (int) pourcentage * this.hauteur * this.largeur; i++) {
-            this.listeCases[(int) (Math.random() * this.largeur)][(int) (Math
-                    .random() * this.hauteur)].addNourriture(new Fruits(100));
-        }
+	for (int i = 0; i < (int) (this.hauteur * this.largeur * pourcentage); i++) {
+	    this.listeCases[(int) (Math.random() * this.largeur)][(int) (Math
+		    .random() * this.hauteur)].setNourriture(new Fruits(10));
+	}
     }
 
     public void add(AbstractNeuneu neuneu) {
-        this.neuneus.add(neuneu);
+	this.neuneus.add(neuneu);
     }
 
     @Override
     public void dessinerObjet(Graphics g) {
-        for (Case[] cases : this.listeCases) {
-            for (Case uneCase : cases) {
-                uneCase.dessinerObjet(g);
-            }
-        }
-        for (AbstractNeuneu neuneu : this.neuneus) {
-            neuneu.dessinerObjet(g);
-        }
+	for (Case[] cases : this.listeCases) {
+	    for (Case uneCase : cases) {
+		uneCase.dessinerObjet(g);
+	    }
+	}
+	for (AbstractNeuneu neuneu : this.neuneus) {
+	    neuneu.dessinerObjet(g);
+	}
     }
 
     public List<AbstractNeuneu> getNeuneus() {
-        return this.neuneus;
+	return this.neuneus;
     }
 
-    public void go() {
-        for (int i = 0; i < 20; i++) {
-            for (AbstractNeuneu neuneu : this.neuneus) {
-                neuneu.cycleDeVie();
-            }
-            try {
-                Thread.sleep(250);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+    public void go() throws InterruptedException {
+	for (int i = 0; i < 200; i++) {
+	    for (int j = 0; j < this.neuneus.size(); j++) {
+		this.neuneus.get(j).cycleDeVie();
+	    }
+	    Thread.sleep(400);
 
-            this.zone.repaint();
-        }
+	    this.zone.repaint();
+	}
     }
 
     public Case[][] getListeCases() {
-        return this.listeCases;
+	return this.listeCases;
     }
 }

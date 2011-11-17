@@ -9,9 +9,10 @@ import javax.swing.JFrame;
 
 /**
  * une classe comportant une zone graphique dans laquelle on peut dessiner ; le
- * dessin est refait automatiquement par la classe Panel associée ; tous les
- * objets de type ObjetDessinable ajoutés à la liste sont redessinés par un
- * appel à leur méthode dessinerObjet(Graphics g)
+ * dessin est refait automatiquement par la classe Panel associï¿½e ; tous les
+ * objets de type ObjetDessinable ajoutï¿½s ï¿½ la liste sont redessinï¿½s par un
+ * appel ï¿½ leur mï¿½thode dessinerObjet(Graphics g)
+ * 
  * @see ObjectDessinable,LoftPanel
  * @author moreau
  */
@@ -20,46 +21,47 @@ public class ZoneGraphique extends JFrame {
     private static final long serialVersionUID = 1L;
 
     /**
-     * la liste d'objets à dessiner
+     * la liste d'objets ï¿½ dessiner
      */
     List<ObjetDessinable> liste;
 
     /**
      * constructeur
+     * 
      * @param titre
      *            le nom de l'application
      */
     public ZoneGraphique(String titre) {
-        // appel au constructeur de base
-        super(titre);
+	// appel au constructeur de base
+	super(titre);
 
-        // ajout d'une taille par défaut
-        this.setSize(600, 600);
+	// ajout d'une taille par dï¿½faut
+	this.setSize(700, 700);
 
-        // création de la liste d'objets
-        this.liste = new LinkedList<>();
+	// crï¿½ation de la liste d'objets
+	this.liste = new LinkedList<>();
 
-        // ajout d'un listener
-        this.addWindowListener(new WindowAdapter() {
+	// ajout d'un listener
+	this.addWindowListener(new WindowAdapter() {
 
-            @Override
-            public void windowClosing(WindowEvent e) {
-                System.exit(0);
-            }
-        });
+	    @Override
+	    public void windowClosing(WindowEvent e) {
+		System.exit(0);
+	    }
+	});
 
-        // création du panneau
-        LoftPanel a = new LoftPanel(this.liste);
-        this.getContentPane().add(a);
+	// crï¿½ation du panneau
+	LoftPanel a = new LoftPanel(this.liste);
+	this.getContentPane().add(a);
 
-        this.setVisible(true);
+	this.setVisible(true);
     }
 
     /**
      * ajout d'un objet dans la zone graphique
      */
     public void ajouterObjet(ObjetDessinable o) {
-        this.liste.add(o);
+	this.liste.add(o);
     }
 
     /**
@@ -67,7 +69,7 @@ public class ZoneGraphique extends JFrame {
      */
     @Override
     public int getWidth() {
-        return this.getContentPane().getWidth();
+	return this.getContentPane().getWidth();
     }
 
     /**
@@ -75,6 +77,6 @@ public class ZoneGraphique extends JFrame {
      */
     @Override
     public int getHeight() {
-        return this.getContentPane().getHeight();
+	return this.getContentPane().getHeight();
     }
 }
