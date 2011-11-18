@@ -10,14 +10,6 @@ public abstract class AbstractNourriture implements Mangeable {
         this.valeurEnergetique = valeurEnergetiqueIn;
     }
 
-    public int getValeurEnergetique() {
-        return this.valeurEnergetique;
-    }
-
-    public void setValeurEnergetique(int valeurEnergetiqueIn) {
-        this.valeurEnergetique = valeurEnergetiqueIn;
-    }
-
     @Override
     public void consommerEnergie(int energie) {
         this.valeurEnergetique -= energie;
@@ -28,5 +20,13 @@ public abstract class AbstractNourriture implements Mangeable {
         return this.valeurEnergetique;
     }
 
+    public int getValeurEnergetique() {
+        return this.valeurEnergetique;
+    }
+
     public abstract Color returnColor();
+
+    public void setValeurEnergetique(int valeurEnergetiqueIn) {
+        this.valeurEnergetique = valeurEnergetiqueIn;
+    }
 }

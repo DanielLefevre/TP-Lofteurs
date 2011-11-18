@@ -7,14 +7,14 @@ import java.awt.Graphics;
 
 /**
  * interface des objets dessinables ; ils devront simplement implanter une
- * méthode de dessin à partir d'un contexte graphique passé par l'application
+ * mï¿½thode de dessin ï¿½ partir d'un contexte graphique passï¿½ par l'application
  * 
  * @author moreau
  */
 public interface ObjetDessinable {
 
     /**
-     * fonction de dessin ; à surcharger
+     * fonction de dessin ; ï¿½ surcharger
      * 
      * @param g
      *            le contexte graphique

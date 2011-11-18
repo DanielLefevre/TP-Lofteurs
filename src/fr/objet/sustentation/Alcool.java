@@ -2,14 +2,14 @@ package fr.objet.sustentation;
 
 import java.awt.Color;
 
-public class Fruits extends AbstractNourriture {
+public class Alcool extends AbstractNourriture {
 
-    public Fruits(int valeurEnergetiqueIn) {
+    public Alcool(int valeurEnergetiqueIn) {
         super(valeurEnergetiqueIn);
     }
 
     @Override
     public Color returnColor() {
-        return Color.PINK;
+        return Color.ORANGE;
     }
 }

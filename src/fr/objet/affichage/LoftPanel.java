@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 /**
  * un panneau de dessin pour le loft
+ * 
  * @author moreau
  */
 class LoftPanel extends JPanel {
@@ -14,21 +15,22 @@ class LoftPanel extends JPanel {
     private static final long serialVersionUID = 1L;
 
     /**
-     * référence sur la liste des objets à dessiner
+     * rï¿½fï¿½rence sur la liste des objets ï¿½ dessiner
      */
     private List<ObjetDessinable> listeObjets;
 
     /**
      * constructeur
+     * 
      * @param liste
-     *            référence sur la liste des objets (gérée par la ZoneGraphique)
+     *            rï¿½fï¿½rence sur la liste des objets (gï¿½rï¿½e par la ZoneGraphique)
      */
     public LoftPanel(List<ObjetDessinable> liste) {
         this.listeObjets = liste;
     }
 
     /**
-     * on redéfinit la méthode paint() : elle se contente d'appeler les méthodes
+     * on redï¿½finit la mï¿½thode paint() : elle se contente d'appeler les mï¿½thodes
      * dessinerObjet() de la liste d'objets dessinables
      */
     @Override

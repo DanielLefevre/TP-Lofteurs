@@ -32,44 +32,36 @@ public class ZoneGraphique extends JFrame {
      *            le nom de l'application
      */
     public ZoneGraphique(String titre) {
-	// appel au constructeur de base
-	super(titre);
+        // appel au constructeur de base
+        super(titre);
 
-	// ajout d'une taille par d�faut
-	this.setSize(700, 700);
+        // ajout d'une taille par d�faut
+        this.setSize(700, 700);
 
-	// cr�ation de la liste d'objets
-	this.liste = new LinkedList<>();
+        // cr�ation de la liste d'objets
+        this.liste = new LinkedList<>();
 
-	// ajout d'un listener
-	this.addWindowListener(new WindowAdapter() {
+        // ajout d'un listener
+        this.addWindowListener(new WindowAdapter() {
 
-	    @Override
-	    public void windowClosing(WindowEvent e) {
-		System.exit(0);
-	    }
-	});
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.exit(0);
+            }
+        });
 
-	// cr�ation du panneau
-	LoftPanel a = new LoftPanel(this.liste);
-	this.getContentPane().add(a);
+        // cr�ation du panneau
+        LoftPanel a = new LoftPanel(this.liste);
+        this.getContentPane().add(a);
 
-	this.setVisible(true);
+        this.setVisible(true);
     }
 
     /**
      * ajout d'un objet dans la zone graphique
      */
     public void ajouterObjet(ObjetDessinable o) {
-	this.liste.add(o);
-    }
-
-    /**
-     * largeur de la partie dessinable
-     */
-    @Override
-    public int getWidth() {
-	return this.getContentPane().getWidth();
+        this.liste.add(o);
     }
 
     /**
@@ -77,6 +69,14 @@ public class ZoneGraphique extends JFrame {
      */
     @Override
     public int getHeight() {
-	return this.getContentPane().getHeight();
+        return this.getContentPane().getHeight();
+    }
+
+    /**
+     * largeur de la partie dessinable
+     */
+    @Override
+    public int getWidth() {
+        return this.getContentPane().getWidth();
     }
 }
