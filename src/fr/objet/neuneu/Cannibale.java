@@ -5,6 +5,7 @@ import java.awt.Graphics;
 
 import fr.objet.general.Case;
 import fr.objet.general.Loft;
+import fr.objet.sustentation.Fruits;
 
 public class Cannibale extends AbstractNeuneu {
 
@@ -23,12 +24,9 @@ public class Cannibale extends AbstractNeuneu {
                 newCase = this.determinerCaseVoisineAleatoire();
             }
             if (newCase.hasNeuneu() && !newCase.getNeuneu().isDead()) {
+                // Cannibalisme
                 this.changerCase(newCase);
                 this.manger(newCase.getNeuneu());
-            } else if (!newCase.hasNeuneu() && newCase.hasNourriture()) {
-                // Recherche de nourriture
-                this.changerCase(newCase);
-                this.manger(newCase);
             } else if (this.energie > 10 && newCase.hasNeuneu()
                     && Math.random() < 0.05) {
                 // Reproduction
@@ -36,7 +34,8 @@ public class Cannibale extends AbstractNeuneu {
             } else if (!newCase.hasNeuneu()) {
                 // Changement aléatoire de case
                 this.changerCase(newCase);
-                if (newCase.hasNourriture()) {
+                if (newCase.hasNourriture()
+                        && !(newCase.getNourriture() instanceof Fruits)) {
                     this.manger(newCase);
                 }
             }

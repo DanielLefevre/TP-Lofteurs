@@ -43,3 +43,4 @@ class LoftPanel extends JPanel {
         }
     }
 }
+

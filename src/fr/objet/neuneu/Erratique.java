@@ -16,12 +16,14 @@ public class Erratique extends AbstractNeuneu {
         super(loftIn, x, y);
     }
 
+    private static final double REPRODUCTION = 0.05;
+
     @Override
     public void cycleDeVie() {
         if (this.energie > 0) {
             Case newCase = this.determinerCaseVoisineAleatoire();
             if (this.energie > 10 && newCase.hasNeuneu()
-                    && Math.random() < 0.05) {
+                    && Math.random() < REPRODUCTION) {
                 this.seReproduire(newCase.getNeuneu());
             } else if (!newCase.hasNeuneu()) {
                 this.changerCase(newCase);

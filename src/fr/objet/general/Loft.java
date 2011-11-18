@@ -7,6 +7,7 @@ import java.util.List;
 import fr.objet.affichage.ObjetDessinable;
 import fr.objet.affichage.ZoneGraphique;
 import fr.objet.neuneu.AbstractNeuneu;
+import fr.objet.sustentation.Alcool;
 import fr.objet.sustentation.Fruits;
 
 public class Loft implements ObjetDessinable {
@@ -66,7 +67,7 @@ public class Loft implements ObjetDessinable {
     }
 
     public void go() throws InterruptedException {
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < 500; i++) {
             for (int j = 0; j < this.neuneus.size(); j++) {
                 this.neuneus.get(j).cycleDeVie();
             }
@@ -81,9 +82,11 @@ public class Loft implements ObjetDessinable {
     }
 
     public void remplissageAleatoire(float pourcentage) {
-        for (int i = 0; i < (int) (this.hauteur * this.largeur * pourcentage); i++) {
+        for (int i = 0; i < (int) (this.hauteur * this.largeur * pourcentage / 2); i++) {
             this.listeCases[(int) (Math.random() * this.largeur)][(int) (Math
                     .random() * this.hauteur)].setNourriture(new Fruits(20));
+            this.listeCases[(int) (Math.random() * this.largeur)][(int) (Math
+                    .random() * this.hauteur)].setNourriture(new Alcool(20));
         }
     }
 

@@ -8,44 +8,56 @@ import java.util.List;
 import javax.swing.JFrame;
 
 /**
- * une classe comportant une zone graphique dans laquelle on peut dessiner ; le
- * dessin est refait automatiquement par la classe Panel associ�e ; tous les
- * objets de type ObjetDessinable ajout�s � la liste sont redessin�s par un
- * appel � leur m�thode dessinerObjet(Graphics g)
+ * Une classe comportant une zone graphique dans laquelle on peut dessiner ; le
+ * dessin est refait automatiquement par la classe Panel associée ; tous les
+ * objets de type ObjetDessinable ajoutés à la liste sont redessinés par un
+ * appel à leur m�thode dessinerObjet(Graphics g).
  * 
  * @see ObjectDessinable,LoftPanel
- * @author moreau
+ * @author moreau,
  */
-public class ZoneGraphique extends JFrame {
+public class ZoneGraphique extends JFrame
+{
 
+    /**
+     * Taille de la zone graphique.
+     */
+    private static final int SIZE = 700;
+
+    /**
+     * Version ID.
+     */
     private static final long serialVersionUID = 1L;
 
     /**
-     * la liste d'objets � dessiner
+     * La liste d'objets à dessiner.
      */
-    List<ObjetDessinable> liste;
+    private List<ObjetDessinable> liste;
 
     /**
-     * constructeur
+     * Constructeur.
      * 
      * @param titre
      *            le nom de l'application
      */
-    public ZoneGraphique(String titre) {
+    public ZoneGraphique(final String titre)
+    {
         // appel au constructeur de base
         super(titre);
 
         // ajout d'une taille par d�faut
-        this.setSize(700, 700);
+        this.setSize(ZoneGraphique.SIZE, ZoneGraphique.SIZE);
 
         // cr�ation de la liste d'objets
         this.liste = new LinkedList<>();
 
         // ajout d'un listener
-        this.addWindowListener(new WindowAdapter() {
+        this.addWindowListener(new WindowAdapter()
+        {
 
             @Override
-            public void windowClosing(WindowEvent e) {
+            public void windowClosing(WindowEvent e)
+            {
                 System.exit(0);
             }
         });
@@ -58,25 +70,34 @@ public class ZoneGraphique extends JFrame {
     }
 
     /**
-     * ajout d'un objet dans la zone graphique
+     * Ajout d'un objet dans la zone graphique.
+     * 
+     * @param o
      */
-    public void ajouterObjet(ObjetDessinable o) {
+    public final void ajouterObjet(final ObjetDessinable o)
+    {
         this.liste.add(o);
     }
 
-    /**
-     * hauteur de la partie dessinable
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.awt.Component#getHeight()
      */
     @Override
-    public int getHeight() {
+    public final int getHeight()
+    {
         return this.getContentPane().getHeight();
     }
 
-    /**
-     * largeur de la partie dessinable
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.awt.Component#getWidth()
      */
     @Override
-    public int getWidth() {
+    public final int getWidth()
+    {
         return this.getContentPane().getWidth();
     }
 }

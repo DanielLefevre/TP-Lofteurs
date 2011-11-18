@@ -3,6 +3,7 @@ package fr.objet.neuneu;
 import fr.objet.affichage.ObjetDessinable;
 import fr.objet.general.Case;
 import fr.objet.general.Loft;
+import fr.objet.sustentation.AbstractNourriture;
 import fr.objet.sustentation.Mangeable;
 
 public abstract class AbstractNeuneu implements Mangeable, ObjetDessinable {

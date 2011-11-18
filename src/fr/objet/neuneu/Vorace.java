@@ -5,6 +5,7 @@ import java.awt.Graphics;
 
 import fr.objet.general.Case;
 import fr.objet.general.Loft;
+import fr.objet.sustentation.Fruits;
 
 public class Vorace extends AbstractNeuneu {
 
@@ -21,10 +22,11 @@ public class Vorace extends AbstractNeuneu {
             }
             if (this.energie > 10 && newCase.hasNeuneu()
                     && Math.random() < 0.05) {
-                this.seReproduire(newCase.getNeuneus().get(0));
+                this.seReproduire(newCase.getNeuneu());
             } else if (!newCase.hasNeuneu()) {
                 this.changerCase(newCase);
-                if (newCase.hasNourriture()) {
+                if (newCase.hasNourriture()
+                        && !(newCase.getNourriture() instanceof Fruits)) {
                     this.manger(newCase);
                 }
             }

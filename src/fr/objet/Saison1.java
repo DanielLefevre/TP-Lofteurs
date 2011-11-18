@@ -7,7 +7,14 @@ import fr.objet.neuneu.Erratique;
 import fr.objet.neuneu.Lapin;
 import fr.objet.neuneu.Vorace;
 
-public class Saison1 {
+/**
+ * Classe contenance le main.
+ * 
+ * @author Daniel
+ * 
+ */
+public class Saison1
+{
 
     public static int nombreLofteurs = 10;
     public static int tailleLoft = 30;
@@ -16,31 +23,40 @@ public class Saison1 {
     public static float proportionCannibale = 0.1f;
     public static float proportionLapin = 0f;
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException
+    {
         ZoneGraphique zone = new ZoneGraphique("Mon premier loft");
         Loft loft = new Loft(tailleLoft, zone);
         loft.remplissageAleatoire(0.1f);
         zone.ajouterObjet(loft);
 
-        for (int i = 0; i < nombreLofteurs; i++) {
+        for (int i = 0; i < nombreLofteurs; i++)
+        {
             double x = Math.random();
-            if (x < proportionVorace) {
+            if (x < proportionVorace)
+            {
                 loft.add(new Vorace(loft, (int) (Math.random() * 29),
                         (int) (Math.random() * 29)));
-            } else {
+            } else
+            {
                 x -= proportionVorace;
-                if (x < proportionErratique) {
+                if (x < proportionErratique)
+                {
                     loft.add(new Erratique(loft, (int) (Math.random() * 29),
                             (int) (Math.random() * 29)));
-                } else {
+                } else
+                {
                     x -= proportionErratique;
-                    if (x < proportionCannibale) {
+                    if (x < proportionCannibale)
+                    {
                         loft.add(new Cannibale(loft,
                                 (int) (Math.random() * 29), (int) (Math
                                         .random() * 29)));
-                    } else {
+                    } else
+                    {
                         x -= proportionCannibale;
-                        if (x < proportionLapin) {
+                        if (x < proportionLapin)
+                        {
                             loft.add(new Lapin(loft,
                                     (int) (Math.random() * 29), (int) (Math
                                             .random() * 29)));

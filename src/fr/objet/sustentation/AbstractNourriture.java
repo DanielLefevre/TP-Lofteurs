@@ -29,4 +29,12 @@ public abstract class AbstractNourriture implements Mangeable {
     public void setValeurEnergetique(int valeurEnergetiqueIn) {
         this.valeurEnergetique = valeurEnergetiqueIn;
     }
+
+    public boolean isAlcool() {
+        return this instanceof Alcool;
+    }
+
+    public boolean isFruits() {
+        return this instanceof Fruits;
+    }
 }

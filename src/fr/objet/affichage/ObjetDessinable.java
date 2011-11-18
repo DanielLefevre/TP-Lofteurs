@@ -1,6 +1,3 @@
-/**
- * 
- */
 package fr.objet.affichage;
 
 import java.awt.Graphics;
@@ -11,7 +8,8 @@ import java.awt.Graphics;
  * 
  * @author moreau
  */
-public interface ObjetDessinable {
+public interface ObjetDessinable
+{
 
     /**
      * fonction de dessin ; � surcharger
