@@ -6,41 +6,47 @@ import java.util.List;
 import javax.swing.JPanel;
 
 /**
- * un panneau de dessin pour le loft
+ * Panneau de dessin pour le loft.
  * 
- * @author moreau
+ * @author moreau, Daniel Lefèvre
  */
 class LoftPanel extends JPanel {
 
+    /**
+     * Version ID.
+     */
     private static final long serialVersionUID = 1L;
 
     /**
-     * r�f�rence sur la liste des objets � dessiner
+     * Référence sur la liste des objets à afficher.
      */
     private List<ObjetDessinable> listeObjets;
 
     /**
-     * constructeur
+     * Constructeur.
      * 
      * @param liste
-     *            r�f�rence sur la liste des objets (g�r�e par la ZoneGraphique)
+     *            Référence sur la liste des objets (gérée par la ZoneGraphique
      */
-    public LoftPanel(List<ObjetDessinable> liste) {
-        this.listeObjets = liste;
+    public LoftPanel(final List<ObjetDessinable> liste) {
+	this.listeObjets = liste;
     }
 
     /**
-     * on red�finit la m�thode paint() : elle se contente d'appeler les m�thodes
-     * dessinerObjet() de la liste d'objets dessinables
+     * On redéfinit la méthode paint() : elle se contente d'appeler les méthodes
+     * dessinerObjet() de la liste d'objets dessinables.
+     * 
+     * @param g
+     *            l'objet Graphics permettant à la méthode de dessiner sur le
+     *            JPanel
      */
     @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponents(g);
+    public void paintComponent(final Graphics g) {
+	super.paintComponents(g);
 
-        // on redessine tout
-        for (ObjetDessinable x : this.listeObjets) {
-            x.dessinerObjet(g);
-        }
+	// on redessine tout
+	for (ObjetDessinable x : this.listeObjets) {
+	    x.dessinerObjet(g);
+	}
     }
 }
-

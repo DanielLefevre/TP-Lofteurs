@@ -3,19 +3,31 @@ package fr.objet.affichage;
 import java.awt.Graphics;
 
 /**
- * interface des objets dessinables ; ils devront simplement implanter une
- * m�thode de dessin � partir d'un contexte graphique pass� par l'application
+ * Interface des objets dessinables ; ils devront simplement implanter une
+ * méthode de dessin à partir d'un contexte graphique passé par l'application.
  * 
- * @author moreau
+ * @author moreau, Daniel Lefèvre
  */
-public interface ObjetDessinable
-{
+public interface ObjetDessinable {
 
     /**
-     * fonction de dessin ; � surcharger
+     * Taille du cercle représentant de la nourriture.
+     */
+    int TAILLE_CERCLE_NOURRITURE = 8;
+    /**
+     * Taille du cercle représentant un neuneu.
+     */
+    int TAILLE_CERCLE_NEUNEU = 8;
+    /**
+     * Taille d'une case.
+     */
+    int TAILLE_CASE = 20;
+
+    /**
+     * Fonction de dessin ; à surchager.
      * 
      * @param g
      *            le contexte graphique
      */
-    public void dessinerObjet(Graphics g);
+    void dessinerObjet(Graphics g);
 }

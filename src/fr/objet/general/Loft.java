@@ -10,15 +10,53 @@ import fr.objet.neuneu.AbstractNeuneu;
 import fr.objet.sustentation.Alcool;
 import fr.objet.sustentation.Fruits;
 
+/**
+ * Implémente un loft, qui contient une liste de cases, une liste de neuneu,
+ * ainsi qu'une référence vers la zone graphique pour l'affichage.
+ * 
+ * @author Daniel Lefèvre
+ */
+/**
+ * @author Daniel
+ * 
+ */
 public class Loft implements ObjetDessinable {
 
+    /**
+     * Temps entre le lancement de deux tours successifs.
+     */
+    public static final int TIME_WAIT = 400;
+    /**
+     * Liste des cases.
+     */
     private Case[][] listeCases;
+    /**
+     * Hauteur du loft.
+     */
     private int hauteur;
+    /**
+     * Largeur du loft.
+     */
     private int largeur;
+    /**
+     * Liste des neuneurs. Elle contient aussi ceux qui sont morts.
+     */
     private List<AbstractNeuneu> neuneus = new ArrayList<>();
+    /**
+     * Référence vers la zone graphique pour l'affichage.
+     */
     private ZoneGraphique zone;
 
-    public Loft(int tailleIn, ZoneGraphique zoneIn) {
+    /**
+     * Constructeur à partir de la taille (on considère que largeur = hauteur)
+     * et avec la référence à la zone graphique.
+     * 
+     * @param tailleIn
+     *            côté du loft
+     * @param zoneIn
+     *            zone graphique
+     */
+    public Loft(final int tailleIn, final ZoneGraphique zoneIn) {
         this.hauteur = tailleIn;
         this.largeur = tailleIn;
         this.listeCases = new Case[tailleIn][tailleIn];
@@ -30,12 +68,23 @@ public class Loft implements ObjetDessinable {
         this.zone = zoneIn;
     }
 
-    public void add(AbstractNeuneu neuneu) {
+    /**
+     * Ajouter un neuneu dans le loft.
+     * 
+     * @param neuneu
+     *            le neuneu à ajouter
+     */
+    public final void add(final AbstractNeuneu neuneu) {
         this.neuneus.add(neuneu);
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see fr.objet.affichage.ObjetDessinable#dessinerObjet(java.awt.Graphics)
+     */
     @Override
-    public void dessinerObjet(Graphics g) {
+    public final void dessinerObjet(final Graphics g) {
         for (Case[] cases : this.listeCases) {
             for (Case uneCase : cases) {
                 uneCase.dessinerObjet(g);
@@ -46,55 +95,102 @@ public class Loft implements ObjetDessinable {
         }
     }
 
-    public Case getCase(int x, int y) {
+    /***
+     * Getter.
+     * 
+     * @param x
+     *            l'abscisse
+     * @param y
+     *            l'ordonnée
+     * @return la case correspondant à ces corrdonnées.
+     */
+    public final Case getCase(final int x, final int y) {
         return this.listeCases[x][y];
     }
 
-    public int getHauteur() {
+    /**
+     * Getter.
+     * 
+     * @return la hauteur du loft
+     */
+    public final int getHauteur() {
         return this.hauteur;
     }
 
-    public int getLargeur() {
+    /**
+     * Getter.
+     * 
+     * @return la largeur du loft
+     */
+    public final int getLargeur() {
         return this.largeur;
     }
 
-    public Case[][] getListeCases() {
+    /**
+     * Getter.
+     * 
+     * @return la liste des cases
+     */
+    public final Case[][] getListeCases() {
         return this.listeCases;
     }
 
-    public List<AbstractNeuneu> getNeuneus() {
+    /**
+     * Getter.
+     * 
+     * @return la liste des neuneus
+     */
+    public final List<AbstractNeuneu> getNeuneus() {
         return this.neuneus;
     }
 
-    public void go() throws InterruptedException {
-        for (int i = 0; i < 500; i++) {
+    /**
+     * Lance le programme : démarre une succession de n boucles.
+     * 
+     * @param nombreTours
+     *            le nombre de boucles
+     * @throws InterruptedException
+     *             si le Thread.sleep() a un problème
+     */
+    public final void go(final int nombreTours) throws InterruptedException {
+        for (int i = 0; i < nombreTours; i++) {
             for (int j = 0; j < this.neuneus.size(); j++) {
                 this.neuneus.get(j).cycleDeVie();
             }
-            Thread.sleep(400);
+            Thread.sleep(Loft.TIME_WAIT);
 
             this.zone.repaint();
         }
     }
 
-    public boolean isInBounds(int x, int y) {
+    /**
+     * Vérifie si les coordonées x et y correspondent à une case appartenant au
+     * loft.
+     * 
+     * @param x
+     *            l'abscisse
+     * @param y
+     *            l'ordonnée
+     * @return true si x est entre 0 et la largeur - 1 et y entre 0 et la
+     *         hauteur - 1, false sinon
+     */
+    public final boolean isInBounds(final int x, final int y) {
         return x >= 0 && x < this.largeur && y >= 0 && y < this.hauteur;
     }
 
-    public void remplissageAleatoire(float pourcentage) {
-        for (int i = 0; i < (int) (this.hauteur * this.largeur * pourcentage / 2); i++) {
+    /**
+     * Remplit le loft de nourriture selon le pourcentage.
+     * 
+     * @param pourcentage
+     *            le pourcentage
+     */
+    public final void remplissageAleatoire(final float pourcentage) {
+        for (int i = 0; i < (int) (this.hauteur * this.largeur 
+                * pourcentage / 2); i++) {
             this.listeCases[(int) (Math.random() * this.largeur)][(int) (Math
-                    .random() * this.hauteur)].setNourriture(new Fruits(20));
+                    .random() * this.hauteur)].setNourriture(new Fruits());
             this.listeCases[(int) (Math.random() * this.largeur)][(int) (Math
-                    .random() * this.hauteur)].setNourriture(new Alcool(20));
+                    .random() * this.hauteur)].setNourriture(new Alcool());
         }
-    }
-
-    public void setHauteur(int hauteurIn) {
-        this.hauteur = hauteurIn;
-    }
-
-    public void setLargeur(int largeurIn) {
-        this.largeur = largeurIn;
     }
 }

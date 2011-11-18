@@ -3,27 +3,48 @@ package fr.objet.neuneu;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import fr.objet.affichage.ObjetDessinable;
 import fr.objet.general.Case;
 import fr.objet.general.Loft;
 
+/**
+ * Implémente un erratique : aucune recherche de nourriture, ni de reproduction.
+ * 
+ * @author Daniel Lefèvre
+ * 
+ */
 public class Erratique extends AbstractNeuneu {
 
-    public Erratique(Loft loftIn, Case caseActuelleIn) {
-        super(loftIn, caseActuelleIn);
-    }
-
-    public Erratique(Loft loftIn, int x, int y) {
+    /**
+     * Constructeur.
+     * 
+     * @param loftIn
+     *            le loft
+     * @param x
+     *            l'abscisse
+     * @param y
+     *            l'ordonnée
+     */
+    public Erratique(final Loft loftIn, final int x, final int y) {
         super(loftIn, x, y);
     }
 
+    /**
+     * Probabilité de reproduction.
+     */
     private static final double REPRODUCTION = 0.05;
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see fr.objet.neuneu.AbstractNeuneu#cycleDeVie()
+     */
     @Override
-    public void cycleDeVie() {
-        if (this.energie > 0) {
+    public final void cycleDeVie() {
+        if (this.getEnergie() > 0) {
             Case newCase = this.determinerCaseVoisineAleatoire();
-            if (this.energie > 10 && newCase.hasNeuneu()
-                    && Math.random() < REPRODUCTION) {
+            if (this.getEnergie() > AbstractNeuneu.ENERGIE_REPRODUCTION
+                    && newCase.hasNeuneu() && Math.random() < REPRODUCTION) {
                 this.seReproduire(newCase.getNeuneu());
             } else if (!newCase.hasNeuneu()) {
                 this.changerCase(newCase);
@@ -31,20 +52,27 @@ public class Erratique extends AbstractNeuneu {
                     this.manger(newCase);
                 }
             }
-            this.energie--;
+            this.setEnergie(this.getEnergie() - 1);
         }
     }
 
+    /*
+     * (non-Javadoc)
+     * 
+     * @see fr.objet.affichage.ObjetDessinable#dessinerObjet(java.awt.Graphics)
+     */
     @Override
-    public void dessinerObjet(Graphics g) {
+    public final void dessinerObjet(final Graphics g) {
         Color c = g.getColor();
-        if (this.energie == 0) {
+        if (this.getEnergie() == 0) {
             g.setColor(Color.BLACK);
         } else {
             g.setColor(Color.BLUE);
         }
-        g.fillOval(this.caseActuelle.getX() * 20,
-                this.caseActuelle.getY() * 20, 10, 10);
+        g.fillOval(this.getCaseActuelle().getX() * ObjetDessinable.TAILLE_CASE,
+                this.getCaseActuelle().getY() * ObjetDessinable.TAILLE_CASE,
+                ObjetDessinable.TAILLE_CERCLE_NEUNEU,
+                ObjetDessinable.TAILLE_CERCLE_NEUNEU);
         g.setColor(c);
     }
 }

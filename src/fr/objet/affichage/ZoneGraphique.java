@@ -16,8 +16,7 @@ import javax.swing.JFrame;
  * @see ObjectDessinable,LoftPanel
  * @author moreau,
  */
-public class ZoneGraphique extends JFrame
-{
+public class ZoneGraphique extends JFrame {
 
     /**
      * Taille de la zone graphique.
@@ -40,43 +39,40 @@ public class ZoneGraphique extends JFrame
      * @param titre
      *            le nom de l'application
      */
-    public ZoneGraphique(final String titre)
-    {
-        // appel au constructeur de base
-        super(titre);
+    public ZoneGraphique(final String titre) {
+	// appel au constructeur de base
+	super(titre);
 
-        // ajout d'une taille par d�faut
-        this.setSize(ZoneGraphique.SIZE, ZoneGraphique.SIZE);
+	// ajout d'une taille par d�faut
+	this.setSize(ZoneGraphique.SIZE, ZoneGraphique.SIZE);
 
-        // cr�ation de la liste d'objets
-        this.liste = new LinkedList<>();
+	// cr�ation de la liste d'objets
+	this.liste = new LinkedList<>();
 
-        // ajout d'un listener
-        this.addWindowListener(new WindowAdapter()
-        {
+	// ajout d'un listener
+	this.addWindowListener(new WindowAdapter() {
 
-            @Override
-            public void windowClosing(WindowEvent e)
-            {
-                System.exit(0);
-            }
-        });
+	    @Override
+	    public void windowClosing(final WindowEvent e) {
+		System.exit(0);
+	    }
+	});
 
-        // cr�ation du panneau
-        LoftPanel a = new LoftPanel(this.liste);
-        this.getContentPane().add(a);
+	// cr�ation du panneau
+	LoftPanel a = new LoftPanel(this.liste);
+	this.getContentPane().add(a);
 
-        this.setVisible(true);
+	this.setVisible(true);
     }
 
     /**
      * Ajout d'un objet dans la zone graphique.
      * 
      * @param o
+     *            l'objet dessinable à ajouter à la liste des objets à afficher
      */
-    public final void ajouterObjet(final ObjetDessinable o)
-    {
-        this.liste.add(o);
+    public final void ajouterObjet(final ObjetDessinable o) {
+	this.liste.add(o);
     }
 
     /*
@@ -85,9 +81,8 @@ public class ZoneGraphique extends JFrame
      * @see java.awt.Component#getHeight()
      */
     @Override
-    public final int getHeight()
-    {
-        return this.getContentPane().getHeight();
+    public final int getHeight() {
+	return this.getContentPane().getHeight();
     }
 
     /*
@@ -96,8 +91,7 @@ public class ZoneGraphique extends JFrame
      * @see java.awt.Component#getWidth()
      */
     @Override
-    public final int getWidth()
-    {
-        return this.getContentPane().getWidth();
+    public final int getWidth() {
+	return this.getContentPane().getWidth();
     }
 }
