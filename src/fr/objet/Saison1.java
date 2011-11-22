@@ -18,7 +18,7 @@ public final class Saison1 {
     /**
      * Nombre de lofteurs à la création.
      */
-    private static final int NOMBRE_LOFTEURS = 10;
+    private static final int NOMBRE_LOFTEURS = 30;
     /**
      * Taille du loft.
      */
@@ -26,19 +26,19 @@ public final class Saison1 {
     /**
      * Proportion d'erratiques à la création.
      */
-    private static final float PROPORTION_ERRATIQUE = 0.25f;
+    private static final float PROPORTION_ERRATIQUE = 0f;
     /**
      * Proportion de voraces à la création.
      */
-    private static final float PROPORTION_VORACE = 0.25f;
+    private static final float PROPORTION_VORACE = 0f;
     /**
      * Proportion de cannibales à la création.
      */
-    private static final float PROPORTION_CANNIBALE = 0.25f;
+    private static final float PROPORTION_CANNIBALE = 0f;
     /**
      * Proportion de lapins à la création.
      */
-    private static final float PROPORTION_LAPIN = 0.25f;
+    private static final float PROPORTION_LAPIN = 1f;
     /**
      * Proportion de remplissage en nourriture du loft à la création.
      */

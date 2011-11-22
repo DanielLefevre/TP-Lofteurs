@@ -31,11 +31,11 @@ public abstract class AbstractNeuneu implements Mangeable, ObjetDessinable {
     /**
      * Energie de départ par défaut du neuneu.
      */
-    protected static final int ENERGIE_DEPART = 10;
+    protected static final int ENERGIE_DEPART = 15;
     /**
      * Energie nécessaire pour se reproduire.
      */
-    public static final int ENERGIE_REPRODUCTION = 10;
+    public static final int ENERGIE_REPRODUCTION = 5;
 
     /**
      * Constructeur à partir de la case et du loft.
@@ -50,6 +50,7 @@ public abstract class AbstractNeuneu implements Mangeable, ObjetDessinable {
         this.loft = loftIn;
         this.energie = AbstractNeuneu.ENERGIE_DEPART;
     }
+
     /**
      * Constructeur à partir des coordonnées de la case et du loft.
      * 
@@ -63,6 +64,7 @@ public abstract class AbstractNeuneu implements Mangeable, ObjetDessinable {
     public AbstractNeuneu(final Loft loftIn, final int x, final int y) {
         this.loft = loftIn;
         this.caseActuelle = loftIn.getCase(x, y);
+        this.caseActuelle.addNeuneu(this);
         this.energie = AbstractNeuneu.ENERGIE_DEPART;
     }
 
@@ -142,8 +144,13 @@ public abstract class AbstractNeuneu implements Mangeable, ObjetDessinable {
             return null;
         }
 
+        if (but == this.caseActuelle) {
+            return but;
+        }
+
         // idéale est la case la plus proche avec de la nourriture. Il faut
         // maintenant trouver comment y aller.
+        distanceMin = this.loft.getHauteur() * this.loft.getLargeur();
         Case ideale = null;
         for (Case c : this.caseActuelle.getVoisins()) {
             if (c.distance(but) < distanceMin) {
@@ -200,9 +207,10 @@ public abstract class AbstractNeuneu implements Mangeable, ObjetDessinable {
             for (Case c : ligne) {
                 if (c.hasNeuneu()
                         && c.distance(this.caseActuelle) < distanceMin
-                        && !c.getNeuneu().isDead()) {
+                        && c != this.caseActuelle && !c.getNeuneu().isDead()) {
                     distanceMin = c.distance(this.caseActuelle);
                     but = c;
+
                 }
             }
         }
@@ -216,7 +224,7 @@ public abstract class AbstractNeuneu implements Mangeable, ObjetDessinable {
         // maintenant trouver comment y aller.
         Case ideale = null;
         for (Case c : this.caseActuelle.getVoisins()) {
-            if (c.distance(but) < distanceMin) {
+            if (c.distance(but) <= distanceMin) {
                 distanceMin = c.distance(but);
                 ideale = c;
             }

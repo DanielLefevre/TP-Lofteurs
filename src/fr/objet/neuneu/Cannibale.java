@@ -57,12 +57,13 @@ public class Cannibale extends AbstractNeuneu {
                 this.manger(newCase.getNeuneu());
 
             } else if (this.getEnergie() > AbstractNeuneu.ENERGIE_REPRODUCTION
-                    && newCase.hasNeuneu() && !newCase.getNeuneu().isDead()
+                    && newCase.hasNeuneu() && newCase.getNeuneu() != this
+                    && !newCase.getNeuneu().isDead()
                     && Math.random() < Cannibale.PROBA_REPRODUCTION) {
                 // Reproduction
                 this.seReproduire(newCase.getNeuneu());
 
-            } else if (!newCase.hasNeuneu()) {
+            } else if (!newCase.hasNeuneu() || (newCase.getNeuneu() == this)) {
                 // Changement de case
                 this.changerCase(newCase);
                 if (newCase.hasNourriture()) {
@@ -82,10 +83,10 @@ public class Cannibale extends AbstractNeuneu {
     @Override
     public final void dessinerObjet(final Graphics g) {
         Color c = g.getColor();
-        if (this.getEnergie() == 0) {
-            g.setColor(Color.BLACK);
-        } else {
+        if (this.getEnergie() > 0) {
             g.setColor(Color.RED);
+        } else {
+            g.setColor(Color.BLACK);
         }
         g.fillOval(this.getCaseActuelle().getX() * ObjetDessinable.TAILLE_CASE,
                 this.getCaseActuelle().getY() * ObjetDessinable.TAILLE_CASE,

@@ -31,7 +31,7 @@ public class ZoneGraphique extends JFrame {
     /**
      * La liste d'objets à dessiner.
      */
-    private List<ObjetDessinable> liste;
+    private List<ObjetDessinable> liste = new LinkedList<>();
 
     /**
      * Constructeur.
@@ -43,22 +43,18 @@ public class ZoneGraphique extends JFrame {
         // appel au constructeur de base
         super(titre);
 
-        // ajout d'une taille par d�faut
+        // ajout d'une taille par défaut
         this.setSize(ZoneGraphique.SIZE, ZoneGraphique.SIZE);
-
-        // cr�ation de la liste d'objets
-        this.liste = new LinkedList<>();
 
         // ajout d'un listener
         this.addWindowListener(new WindowAdapter() {
-
             @Override
             public void windowClosing(final WindowEvent e) {
                 System.exit(0);
             }
         });
 
-        // cr�ation du panneau
+        // création du panneau
         LoftPanel a = new LoftPanel(this.liste);
         this.getContentPane().add(a);
 

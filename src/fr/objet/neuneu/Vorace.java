@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import fr.objet.affichage.ObjetDessinable;
 import fr.objet.general.Case;
 import fr.objet.general.Loft;
-import fr.objet.sustentation.Fruits;
 
 /**
  * Implémente un vorace : capacité de recherche de nourriture, reproduction
@@ -46,20 +45,23 @@ public class Vorace extends AbstractNeuneu {
     public final void cycleDeVie() {
         if (this.getEnergie() > 0) {
             Case newCase = this.determinerCaseVersNourriture();
+
             if (newCase == null) {
                 newCase = this.determinerCaseVoisineAleatoire();
             }
+
             if (this.getEnergie() > AbstractNeuneu.ENERGIE_REPRODUCTION
-                    && newCase.hasNeuneu()
+                    && newCase.hasNeuneu() && newCase.getNeuneu() != this
                     && Math.random() < Vorace.PROBA_REPRODUCTION) {
                 this.seReproduire(newCase.getNeuneu());
-            } else if (!newCase.hasNeuneu()) {
+
+            } else if (!newCase.hasNeuneu() || newCase.getNeuneu() == this) {
                 this.changerCase(newCase);
-                if (newCase.hasNourriture()
-                        && !(newCase.getNourriture() instanceof Fruits)) {
+                if (newCase.hasNourriture()) {
                     this.manger(newCase);
                 }
             }
+
             this.decEnergie();
         }
     }
@@ -72,10 +74,10 @@ public class Vorace extends AbstractNeuneu {
     @Override
     public final void dessinerObjet(final Graphics g) {
         Color c = g.getColor();
-        if (this.getEnergie() == 0) {
-            g.setColor(Color.BLACK);
-        } else {
+        if (this.getEnergie() > 0) {
             g.setColor(Color.CYAN);
+        } else {
+            g.setColor(Color.BLACK);
         }
         g.fillOval(this.getCaseActuelle().getX() * ObjetDessinable.TAILLE_CASE,
                 this.getCaseActuelle().getY() * ObjetDessinable.TAILLE_CASE,

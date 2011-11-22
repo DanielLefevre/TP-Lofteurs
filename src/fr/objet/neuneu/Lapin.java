@@ -54,11 +54,11 @@ public class Lapin extends AbstractNeuneu {
             }
 
             if (this.getEnergie() > AbstractNeuneu.ENERGIE_REPRODUCTION
-                    && newCase.hasNeuneu()
+                    && newCase.hasNeuneu() && newCase.getNeuneu() != this
                     && Math.random() < Lapin.PROBA_REPRODUCTION) {
                 this.seReproduire(newCase.getNeuneu());
 
-            } else if (!newCase.hasNeuneu()) {
+            } else if (!newCase.hasNeuneu() || newCase.getNeuneu() != this) {
                 this.changerCase(newCase);
                 if (newCase.hasNourriture()) {
                     this.manger(newCase);
@@ -76,10 +76,10 @@ public class Lapin extends AbstractNeuneu {
     @Override
     public final void dessinerObjet(final Graphics g) {
         Color c = g.getColor();
-        if (this.getEnergie() == 0) {
-            g.setColor(Color.BLACK);
-        } else {
+        if (this.getEnergie() > 0) {
             g.setColor(Color.GREEN);
+        } else {
+            g.setColor(Color.BLACK);
         }
         g.fillOval(this.getCaseActuelle().getX() * ObjetDessinable.TAILLE_CASE,
                 this.getCaseActuelle().getY() * ObjetDessinable.TAILLE_CASE,

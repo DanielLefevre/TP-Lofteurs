@@ -25,7 +25,7 @@ public class Loft implements ObjetDessinable {
     /**
      * Temps entre le lancement de deux tours successifs.
      */
-    public static final int TIME_WAIT = 400;
+    public static final int TIME_WAIT = 100;
     /**
      * Liste des cases.
      */
