@@ -16,6 +16,11 @@ import fr.objet.general.Loft;
 public class Erratique extends AbstractNeuneu {
 
     /**
+     * Probabilité de reproduction.
+     */
+    private static final double REPRODUCTION = 0.05;
+
+    /**
      * Constructeur.
      * 
      * @param loftIn
@@ -28,11 +33,6 @@ public class Erratique extends AbstractNeuneu {
     public Erratique(final Loft loftIn, final int x, final int y) {
         super(loftIn, x, y);
     }
-
-    /**
-     * Probabilité de reproduction.
-     */
-    private static final double REPRODUCTION = 0.05;
 
     /*
      * (non-Javadoc)
@@ -52,7 +52,7 @@ public class Erratique extends AbstractNeuneu {
                     this.manger(newCase);
                 }
             }
-            this.setEnergie(this.getEnergie() - 1);
+            this.decEnergie();
         }
     }
 

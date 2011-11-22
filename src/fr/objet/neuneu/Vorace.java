@@ -60,7 +60,7 @@ public class Vorace extends AbstractNeuneu {
                     this.manger(newCase);
                 }
             }
-            this.setEnergie(this.getEnergie() - 1);
+            this.decEnergie();
         }
     }
 

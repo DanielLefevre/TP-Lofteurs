@@ -11,7 +11,7 @@ public interface Mangeable {
     /**
      * Maximum quantity of energy eatable at one time.
      */
-    int MAX_MANGEABLE = 0;
+    int MAX_MANGEABLE = 10;
 
     /**
      * Consomme l'énergie de l'objet durant le repas.

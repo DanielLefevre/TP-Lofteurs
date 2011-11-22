@@ -29,7 +29,7 @@ class LoftPanel extends JPanel {
      *            Référence sur la liste des objets (gérée par la ZoneGraphique
      */
     public LoftPanel(final List<ObjetDessinable> liste) {
-	this.listeObjets = liste;
+        this.listeObjets = liste;
     }
 
     /**
@@ -42,11 +42,11 @@ class LoftPanel extends JPanel {
      */
     @Override
     public void paintComponent(final Graphics g) {
-	super.paintComponents(g);
+        super.paintComponents(g);
 
-	// on redessine tout
-	for (ObjetDessinable x : this.listeObjets) {
-	    x.dessinerObjet(g);
-	}
+        // on redessine tout
+        for (ObjetDessinable x : this.listeObjets) {
+            x.dessinerObjet(g);
+        }
     }
 }

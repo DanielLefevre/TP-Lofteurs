@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import fr.objet.affichage.ObjetDessinable;
 import fr.objet.general.Case;
 import fr.objet.general.Loft;
-import fr.objet.sustentation.Fruits;
 
 /**
  * Implémente un cannibale : recherche de la nourriture, et mange les neuneu
@@ -51,24 +50,27 @@ public class Cannibale extends AbstractNeuneu {
             if (newCase == null) {
                 newCase = this.determinerCaseVoisineAleatoire();
             }
+
             if (newCase.hasNeuneu() && !newCase.getNeuneu().isDead()) {
                 // Cannibalisme
                 this.changerCase(newCase);
                 this.manger(newCase.getNeuneu());
+
             } else if (this.getEnergie() > AbstractNeuneu.ENERGIE_REPRODUCTION
-                    && newCase.hasNeuneu()
+                    && newCase.hasNeuneu() && !newCase.getNeuneu().isDead()
                     && Math.random() < Cannibale.PROBA_REPRODUCTION) {
                 // Reproduction
                 this.seReproduire(newCase.getNeuneu());
+
             } else if (!newCase.hasNeuneu()) {
-                // Changement aléatoire de case
+                // Changement de case
                 this.changerCase(newCase);
-                if (newCase.hasNourriture()
-                        && !(newCase.getNourriture() instanceof Fruits)) {
+                if (newCase.hasNourriture()) {
                     this.manger(newCase);
                 }
             }
-            this.setEnergie(this.getEnergie() - 1);
+
+            this.decEnergie();
         }
     }
 

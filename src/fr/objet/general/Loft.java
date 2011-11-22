@@ -185,8 +185,7 @@ public class Loft implements ObjetDessinable {
      *            le pourcentage
      */
     public final void remplissageAleatoire(final float pourcentage) {
-        for (int i = 0; i < (int) (this.hauteur * this.largeur 
-                * pourcentage / 2); i++) {
+        for (int i = 0; i < (int) (this.hauteur * this.largeur * pourcentage / 2); i++) {
             this.listeCases[(int) (Math.random() * this.largeur)][(int) (Math
                     .random() * this.hauteur)].setNourriture(new Fruits());
             this.listeCases[(int) (Math.random() * this.largeur)][(int) (Math

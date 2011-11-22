@@ -15,38 +15,19 @@ import fr.objet.sustentation.Mangeable;
 public abstract class AbstractNeuneu implements Mangeable, ObjetDessinable {
 
     /**
-     * Setter.
-     * 
-     * @param energieIn
-     *            l'énergie à donner au neuneu
-     */
-    public final void setEnergie(final int energieIn) {
-        this.energie = energieIn;
-    }
-
-    /**
-     * Setter.
-     * 
-     * @param caseActuelleIn
-     *            la case où va être le neuneu
-     */
-    public final void setCaseActuelle(final Case caseActuelleIn) {
-        this.caseActuelle = caseActuelleIn;
-    }
-
-    /**
      * Energie du neuneu.
      */
     private int energie;
+
     /**
      * Case actuelle où est le neuneu.
      */
     private Case caseActuelle;
+
     /**
      * Référence vers le loft.
      */
     private Loft loft;
-
     /**
      * Energie de départ par défaut du neuneu.
      */
@@ -69,7 +50,6 @@ public abstract class AbstractNeuneu implements Mangeable, ObjetDessinable {
         this.loft = loftIn;
         this.energie = AbstractNeuneu.ENERGIE_DEPART;
     }
-
     /**
      * Constructeur à partir des coordonnées de la case et du loft.
      * 
@@ -132,6 +112,13 @@ public abstract class AbstractNeuneu implements Mangeable, ObjetDessinable {
     public abstract void cycleDeVie();
 
     /**
+     * Décrémente l'énergie.
+     */
+    public final void decEnergie() {
+        this.energie--;
+    }
+
+    /**
      * Recherche la nourriture la plus proche et la case voisine pour y aller.
      * 
      * @return la case voisine de la case actuelle qui est du côté de la
@@ -142,7 +129,7 @@ public abstract class AbstractNeuneu implements Mangeable, ObjetDessinable {
         Case but = null;
         for (Case[] ligne : this.loft.getListeCases()) {
             for (Case c : ligne) {
-                if (c.hasNourriture() && c != this.caseActuelle
+                if (c.hasNourriture()
                         && c.distance(this.caseActuelle) < distanceMin) {
                     distanceMin = c.distance(this.caseActuelle);
                     but = c;
@@ -211,8 +198,9 @@ public abstract class AbstractNeuneu implements Mangeable, ObjetDessinable {
         Case but = null;
         for (Case[] ligne : this.loft.getListeCases()) {
             for (Case c : ligne) {
-                if (c.hasNeuneu() && c != this.caseActuelle
-                        && c.distance(this.caseActuelle) < distanceMin) {
+                if (c.hasNeuneu()
+                        && c.distance(this.caseActuelle) < distanceMin
+                        && !c.getNeuneu().isDead()) {
                     distanceMin = c.distance(this.caseActuelle);
                     but = c;
                 }
@@ -285,7 +273,8 @@ public abstract class AbstractNeuneu implements Mangeable, ObjetDessinable {
 
     /**
      * Mange l'objet de type mangeable. Diminue l'energie de l'objet, augmente
-     * celle du neuneu. Ne peut manger que 10 d'énergie à chaque fois.
+     * celle du neuneu. Ne peut manger que Mangeable.MAX_MANGEABLE d'énergie à
+     * chaque fois.
      * 
      * @param bouffe
      *            l'objet à manger
@@ -293,8 +282,8 @@ public abstract class AbstractNeuneu implements Mangeable, ObjetDessinable {
     public final void manger(final Mangeable bouffe) {
         if (bouffe.getEnergie() > 0) {
             if (bouffe.getEnergie() > Mangeable.MAX_MANGEABLE) {
+                this.addEnergie(Mangeable.MAX_MANGEABLE);
                 bouffe.consommerEnergie(Mangeable.MAX_MANGEABLE);
-                this.addEnergie(MAX_MANGEABLE);
             } else {
                 this.addEnergie(bouffe.getEnergie());
                 bouffe.consommerEnergie(bouffe.getEnergie());
@@ -315,5 +304,25 @@ public abstract class AbstractNeuneu implements Mangeable, ObjetDessinable {
         neuneu.consommerEnergie(AbstractNeuneu.ENERGIE_REPRODUCTION);
         this.loft.add(new Erratique(this.loft, this.caseActuelle.getX(),
                 this.caseActuelle.getY()));
+    }
+
+    /**
+     * Setter.
+     * 
+     * @param caseActuelleIn
+     *            la case où va être le neuneu
+     */
+    public final void setCaseActuelle(final Case caseActuelleIn) {
+        this.caseActuelle = caseActuelleIn;
+    }
+
+    /**
+     * Setter.
+     * 
+     * @param energieIn
+     *            l'énergie à donner au neuneu
+     */
+    public final void setEnergie(final int energieIn) {
+        this.energie = energieIn;
     }
 }

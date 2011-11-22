@@ -53,9 +53,9 @@ public class Case {
      *            l'ordonnée de la case
      */
     public Case(final Loft loftIn, final int xIn, final int yIn) {
-	this.loft = loftIn;
-	this.x = xIn;
-	this.y = yIn;
+        this.loft = loftIn;
+        this.x = xIn;
+        this.y = yIn;
     }
 
     /**
@@ -66,7 +66,7 @@ public class Case {
      *            le neuneu à ajouter
      */
     public final void addNeuneu(final AbstractNeuneu abstractNeuneu) {
-	this.neuneus.add(abstractNeuneu);
+        this.neuneus.add(abstractNeuneu);
     }
 
     /**
@@ -76,15 +76,15 @@ public class Case {
      *            le contexte graphique où dessiner
      */
     public final void dessinerObjet(final Graphics g) {
-	if (this.nourriture != null && this.nourriture.getEnergie() > 0) {
-	    Color c = g.getColor();
-	    g.setColor(this.nourriture.returnColor());
-	    g.fillOval(this.x * ObjetDessinable.TAILLE_CASE, this.y
-		    * ObjetDessinable.TAILLE_CASE,
-		    ObjetDessinable.TAILLE_CERCLE_NOURRITURE,
-		    ObjetDessinable.TAILLE_CERCLE_NOURRITURE);
-	    g.setColor(c);
-	}
+        if (this.nourriture != null && this.nourriture.getEnergie() > 0) {
+            Color c = g.getColor();
+            g.setColor(this.nourriture.returnColor());
+            g.fillOval(this.x * ObjetDessinable.TAILLE_CASE, this.y
+                    * ObjetDessinable.TAILLE_CASE,
+                    ObjetDessinable.TAILLE_CERCLE_NOURRITURE,
+                    ObjetDessinable.TAILLE_CERCLE_NOURRITURE);
+            g.setColor(c);
+        }
     }
 
     /**
@@ -95,7 +95,7 @@ public class Case {
      * @return la distance
      */
     public final double distance(final Case c) {
-	return Math.sqrt(Math.pow(this.x - c.x, 2) + Math.pow(this.y - c.y, 2));
+        return Math.sqrt(Math.pow(this.x - c.x, 2) + Math.pow(this.y - c.y, 2));
     }
 
     /**
@@ -104,7 +104,7 @@ public class Case {
      * @return le premier neuneu de la liste
      */
     public final AbstractNeuneu getNeuneu() {
-	return this.neuneus.get(0);
+        return this.neuneus.get(0);
     }
 
     /**
@@ -113,7 +113,7 @@ public class Case {
      * @return la liste de neuneus
      */
     public final List<AbstractNeuneu> getNeuneus() {
-	return this.neuneus;
+        return this.neuneus;
     }
 
     /**
@@ -123,7 +123,7 @@ public class Case {
      *         l'exception NullPointerException est jetée
      */
     public final AbstractNourriture getNourriture() {
-	return this.nourriture;
+        return this.nourriture;
     }
 
     /**
@@ -132,19 +132,15 @@ public class Case {
      * @return la liste des voisins
      */
     public final ArrayList<Case> getVoisins() {
-	ArrayList<Case> voisins = new ArrayList<>();
-	for (int i = -1; i < 2; i++) {
-	    for (int j = -1; j < 2; j++) {
-		if (this.loft.isInBounds(this.x + i, this.y + j)
-			&& (i != 0 || j != 0)) {
-		    if (this.loft.getCase(this.x + i, this.y + j) == null) {
-			System.out.println();
-		    }
-		    voisins.add(this.loft.getCase(this.x + i, this.y + j));
-		}
-	    }
-	}
-	return voisins;
+        ArrayList<Case> voisins = new ArrayList<>();
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                if (this.loft.isInBounds(this.x + i, this.y + j)) {
+                    voisins.add(this.loft.getCase(this.x + i, this.y + j));
+                }
+            }
+        }
+        return voisins;
     }
 
     /**
@@ -153,7 +149,7 @@ public class Case {
      * @return l'abscisse de la case
      */
     public final int getX() {
-	return this.x;
+        return this.x;
     }
 
     /**
@@ -162,7 +158,7 @@ public class Case {
      * @return l'ordonnée de la case
      */
     public final int getY() {
-	return this.y;
+        return this.y;
     }
 
     /**
@@ -171,7 +167,7 @@ public class Case {
      * @return true si au moins un neuneu y est, false sinon
      */
     public final boolean hasNeuneu() {
-	return !this.neuneus.isEmpty();
+        return !this.neuneus.isEmpty();
     }
 
     /**
@@ -181,7 +177,7 @@ public class Case {
      *         celle-ci est supérieure à 0, false, sinon
      */
     public final boolean hasNourriture() {
-	return this.nourriture != null && this.nourriture.getEnergie() > 0;
+        return this.nourriture != null && this.nourriture.getEnergie() > 0;
     }
 
     /**
@@ -191,7 +187,7 @@ public class Case {
      *            le neuneu à enlever
      */
     public final void removeNeuneu(final AbstractNeuneu abstractNeuneu) {
-	this.neuneus.remove(abstractNeuneu);
+        this.neuneus.remove(abstractNeuneu);
     }
 
     /**
@@ -202,6 +198,6 @@ public class Case {
      *            précédente si elle existe.
      */
     public final void setNourriture(final AbstractNourriture nourritureIn) {
-	this.nourriture = nourritureIn;
+        this.nourriture = nourritureIn;
     }
 }

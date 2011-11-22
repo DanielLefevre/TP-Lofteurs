@@ -44,23 +44,27 @@ public class Lapin extends AbstractNeuneu {
     public final void cycleDeVie() {
         if (this.getEnergie() > 0) {
             Case newCase = this.determinerNeuneuLePlusProche();
+
             if (newCase == null) {
                 newCase = this.determinerCaseVoisineNeuneu();
             }
+
             if (newCase == null) {
                 newCase = this.determinerCaseVoisineAleatoire();
             }
+
             if (this.getEnergie() > AbstractNeuneu.ENERGIE_REPRODUCTION
                     && newCase.hasNeuneu()
                     && Math.random() < Lapin.PROBA_REPRODUCTION) {
                 this.seReproduire(newCase.getNeuneu());
+
             } else if (!newCase.hasNeuneu()) {
                 this.changerCase(newCase);
                 if (newCase.hasNourriture()) {
                     this.manger(newCase);
                 }
             }
-            this.setEnergie(this.getEnergie() - 1);
+            this.decEnergie();
         }
     }
 

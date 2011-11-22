@@ -10,7 +10,7 @@ import fr.objet.neuneu.Vorace;
 /**
  * Classe contenance le main.
  * 
- * @author Daniel
+ * @author Daniel Lefèvre
  * 
  */
 public final class Saison1 {
@@ -26,19 +26,19 @@ public final class Saison1 {
     /**
      * Proportion d'erratiques à la création.
      */
-    private static final float PROPORTION_ERRATIQUE = 0.7f;
+    private static final float PROPORTION_ERRATIQUE = 0.25f;
     /**
      * Proportion de voraces à la création.
      */
-    private static final float PROPORTION_VORACE = 0.2f;
+    private static final float PROPORTION_VORACE = 0.25f;
     /**
      * Proportion de cannibales à la création.
      */
-    private static final float PROPORTION_CANNIBALE = 0.1f;
+    private static final float PROPORTION_CANNIBALE = 0.25f;
     /**
      * Proportion de lapins à la création.
      */
-    private static final float PROPORTION_LAPIN = 0f;
+    private static final float PROPORTION_LAPIN = 0.25f;
     /**
      * Proportion de remplissage en nourriture du loft à la création.
      */
@@ -47,6 +47,12 @@ public final class Saison1 {
      * Nombre de tours de la partie.
      */
     private static final int NOMBRE_TOURS = 500;
+
+    /**
+     * Private useless constructor.
+     */
+    private Saison1() {
+    }
 
     /**
      * Main.
@@ -92,11 +98,5 @@ public final class Saison1 {
             }
         }
         loft.go(Saison1.NOMBRE_TOURS);
-    }
-
-    /**
-     * Private useless constructor.
-     */
-    private Saison1() {
     }
 }
